@@ -70,4 +70,12 @@ def tweet_search(api, query, max_tweets, max_id, since_id, geocode):
             break  # stop the loop
     return searched_tweets, max_id
 
+def write_tweets(tweets, filename):
+    ''' Function that appends tweets to a file. '''
 
+    with open(filename, 'a') as f:
+        f.write('{"data": [')
+        for tweet in tweets:
+            json.dump(tweet._json, f)
+            f.write(',\n')
+        f.write(']}')
