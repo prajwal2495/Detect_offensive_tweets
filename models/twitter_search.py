@@ -4,7 +4,6 @@ import json
 import datetime as dt
 import time
 import os
-import shutil
 import sys
 
 '''
@@ -44,6 +43,7 @@ def load_api():
     # load the twitter API via tweepy
     return tweepy.API(auth)
 
+
 def tweet_search(api, query, max_tweets, max_id, since_id, geocode):
     ''' Function that takes in a search string 'query', the maximum
         number of tweets 'max_tweets', and the minimum (i.e., starting)
@@ -70,15 +70,6 @@ def tweet_search(api, query, max_tweets, max_id, since_id, geocode):
             break  # stop the loop
     return searched_tweets, max_id
 
-def write_tweets(tweets, filename):
-    ''' Function that appends tweets to a file. '''
-
-    with open(filename, 'a') as f:
-        f.write('{"data": [')
-        for tweet in tweets:
-            json.dump(tweet._json, f)
-            f.write(',\n')
-        f.write(']}')
 
 def get_tweet_id(api, date='', days_ago=9, query='a'):
     ''' Function that gets the ID of a tweet. This ID can then be
@@ -101,6 +92,17 @@ def get_tweet_id(api, date='', days_ago=9, query='a'):
         print('search limit (start/stop):', tweet[0].created_at)
         # return the id of the first tweet in the list
         return tweet[0].id
+
+
+def write_tweets(tweets, filename):
+    ''' Function that appends tweets to a file. '''
+
+    with open(filename, 'a') as f:
+        f.write('{"data": [')
+        for tweet in tweets:
+            json.dump(tweet._json, f)
+            f.write(',\n')
+        f.write(']}')
 
 def main():
     ''' This is a script that continuously searches for tweets
