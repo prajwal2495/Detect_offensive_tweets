@@ -44,4 +44,30 @@ def load_api():
     # load the twitter API via tweepy
     return tweepy.API(auth)
 
+def tweet_search(api, query, max_tweets, max_id, since_id, geocode):
+    ''' Function that takes in a search string 'query', the maximum
+        number of tweets 'max_tweets', and the minimum (i.e., starting)
+        tweet id. It returns a list of tweepy.models.Status objects. '''
+
+    searched_tweets = []
+    while len(searched_tweets) < max_tweets:
+        remaining_tweets = max_tweets - len(searched_tweets)
+        try:
+            new_tweets = api.search(q=query, count=remaining_tweets,
+                                    since_id=str(since_id),
+                                    max_id=str(max_id - 1))
+            #                                    geocode=geocode)
+            print('found', len(new_tweets), 'tweets')
+            if not new_tweets:
+                print('no tweets found')
+                break
+            searched_tweets.extend(new_tweets)
+            max_id = new_tweets[-1].id
+        except tweepy.TweepError:
+            print('exception raised, waiting 15 minutes')
+            print('(until:', dt.datetime.now() + dt.timedelta(minutes=15), ')')
+            time.sleep(15 * 60)
+            break  # stop the loop
+    return searched_tweets, max_id
+
 
