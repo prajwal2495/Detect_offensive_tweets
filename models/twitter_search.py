@@ -163,7 +163,7 @@ def main():
             else:
                 max_id = get_tweet_id(api, days_ago=(min_days_old - 1))
         # set the smallest ID to search for
-        since_id = get_tweet_id(api, days_ago=(max_days_old - 1))
+        since_id = get_tweet_id(api, days_ago=(max_days_old - 2))
         print('max id (starting point) =', max_id)
         print('since id (ending point) =', since_id)
 
