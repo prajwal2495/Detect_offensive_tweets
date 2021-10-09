@@ -218,6 +218,44 @@ def LDA_Random_forest(train_data, test_data):
     print("\n\n")
 
 
+def LDA_Multi_Naive_Bayes(train_data, test_data):
+    print("LDA + MultiNomial Naive Bayes")
+    model = make_pipeline(CountVectorizer(), LDA(), MultinomialNB())
+    X_train = train_data['Tweet']
+    y_train = train_data['Class']
+
+    X_test = test_data['Tweet']
+    y_test = test_data['Class']
+    model.fit(X_train, y_train)
+    labels = model.predict(X_test)
+    print("Accuracy:", metrics.accuracy_score(y_test, labels) * 100)
+    # takes a lot of time to generate 10 trees and find accuracy
+    # print(cross_val_score(model, X, y, cv=10))
+    cm = confusion_matrix(y_test, labels)#, train_data['Class'].unique())
+    print("Confusion matrix", cm)
+    print(classification_report(y_test, labels, digits = 4))
+    print("\n\n")
+
+
+def LDA_Decision(train_data, test_data):
+    print("LDA + Decision tree")
+    model = make_pipeline(CountVectorizer(), LDA(), DecisionTreeClassifier())
+    X_train = train_data['Tweet']
+    y_train = train_data['Class']
+
+    X_test = test_data['Tweet']
+    y_test = test_data['Class']
+    model.fit(X_train, y_train)
+    labels = model.predict(X_test)
+    print("Accuracy:", metrics.accuracy_score(y_test, labels) * 100)
+    # takes a lot of time to generate 10 trees and find accuracy
+    # print(cross_val_score(model, X, y, cv=10))
+    cm = confusion_matrix(y_test, labels)#, train_data['Class'].unique())
+    print("Confusion matrix", cm)
+    print(classification_report(y_test, labels, digits = 4))
+    print("\n\n")
+
+
 def word_clouds(tweets):
     comment_words = ""
     map_of_words = {}
