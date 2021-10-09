@@ -1,11 +1,14 @@
 import pandas as pd
+import numpy as np
 import warnings
 
 from sklearn import metrics
 from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.feature_extraction.text import TfidfVectorizer, CountVectorizer
-from sklearn.metrics import confusion_matrix, classification_report
+from sklearn.metrics import confusion_matrix, classification_report, roc_curve,auc,roc_auc_score
+from sklearn.calibration import CalibratedClassifierCV
+import matplotlib.pyplot as plt
 from sklearn.naive_bayes import MultinomialNB
 from sklearn.pipeline import make_pipeline
 from sklearn.tree import DecisionTreeClassifier
@@ -78,7 +81,17 @@ def TFIDF_SVM(train_data, test_data):
     X_test = test_data['Tweet']
     y_test = test_data['Class']
     model.fit(X_train, y_train)
+    #AUC_ARRAY = []
+    #alpha = [10 ** x for x in range(-5, 4)]
     labels = model.predict(X_test)
+    #calib = CalibratedClassifierCV(model, method="sigmoid")
+    #calib.fit(X_train,y_train)
+    #predictions = calib.predict_proba(X_test)
+    #AUC_ARRAY.append(roc_auc_score(y_test,predictions[:,1]))
+   # for i in range(len(AUC_ARRAY)):
+    #    print('AUC for alpha = ', alpha[i], 'is', AUC_ARRAY[i])
+
+    #best_alpha = np.argmax(AUC_ARRAY)
     print("Accuracy:", metrics.accuracy_score(y_test, labels) * 100)
     # takes a lot of time to generate 10 trees and find accuracy
     # print(cross_val_score(model, X, y, cv=10))
@@ -316,12 +329,12 @@ def main():
     # BOW_Decision_Tree(train_data, test_data)
     # BOW_Multi_Naive_Bayes(train_data, test_data)
     # BOW_Random_forest(train_data, test_data)
-    BOW_SVM(train_data, test_data)
+    #BOW_SVM(train_data, test_data)
 
     # LDA_Decision(train_data, test_data)
     # LDA_Multi_Naive_Bayes(train_data, test_data)
     # LDA_Random_forest(train_data, test_data)
-    LDA_SVM(train_data, test_data)
+    #LDA_SVM(train_data, test_data)
 
 
 if __name__ == '__main__':
