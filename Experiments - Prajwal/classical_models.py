@@ -109,6 +109,26 @@ def BOW_SVM(train_data, test_data):
     print(classification_report(y_test, labels, digits = 4))
     print("\n\n")
 
+def word_clouds(tweets):
+    comment_words = ""
+    map_of_words = {}
+    for tweet in tweets['Tweet']:
+        # comment_words += tweet + " "
+        for word in tweet.split():
+            if word in map_of_words:
+                map_of_words[word] += 1
+            else:
+                map_of_words[word] = 1
+    map_of_words = [(v, k) for k, v in map_of_words.items()]
+    map_of_words.sort(reverse=True)  # natively sort tuples by first element
+    i = 0
+    for v, k in map_of_words:
+        if i == 5:
+            break
+        i += 1
+        print ("%s: %d" % (k, v))
+
+    print()
 
 
 
@@ -117,7 +137,7 @@ def main():
     train_filename = './Data/Marathi_Train.csv'
 
     train_data = read_data(train_filename)
-    #word_clouds(train_data[['Tweet']])
+    word_clouds(train_data[['Tweet']])
     train_data = train_data[['Tweet', 'Class']]
     train_data = train_data[train_data['Class'].notna()]
 
