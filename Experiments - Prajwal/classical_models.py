@@ -180,6 +180,7 @@ def BOW_SVM(train_data, test_data):
     print("Confusion matrix\n", cm)
     print(classification_report(y_test, labels, digits = 4))
     print("\n\n")
+
 def LDA_SVM(train_data, test_data):
     print("LDA + SVM")
     model = make_pipeline(CountVectorizer(), LDA(), SVC())
