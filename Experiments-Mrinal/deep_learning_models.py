@@ -3,7 +3,7 @@ import warnings
 from keras.layers import Embedding, Dense, Activation
 from sklearn import metrics
 from sklearn.feature_extraction.text import TfidfVectorizer
-from sklearn.metrics import confusion_matrix, classification_report
+from sklearn.metrics import confusion_matrix, classification_report,  roc_auc_score
 from sklearn.neural_network import MLPClassifier
 from sklearn.pipeline import make_pipeline
 from keras.models import Sequential
@@ -30,8 +30,13 @@ def TFIDF_Multi_Layer_Perceptron(train_data, test_data):
     # takes a lot of time to generate 10 trees and find accuracy
     cm = confusion_matrix(y_test, labels, train_data['Class'].unique())
     print("Confusion matrix", cm)
-    
+
     print(classification_report(y_test, labels, digits=4))
+    print("\n\n")
+
+    for j in range(len(y_test)):
+        p.append(1 - decision[j][0])
+    print("AUC_SCORE:", roc_auc_score(y_test, p))
     print("\n\n")
 
 
