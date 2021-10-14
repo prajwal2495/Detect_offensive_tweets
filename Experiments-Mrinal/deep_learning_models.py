@@ -1,10 +1,14 @@
 import pandas as pd
 
+
 def read_data(filename):
     file_content = pd.read_csv(filename)
     return file_content
 
+
 def TFIDF_Multi_Layer_Perceptron(train_data, test_data):
+    model = make_pipeline(TfidfVectorizer(),MLPClassifier(random_state=1, max_iter=100, learning_rate_init=0.001, activation='logistic'))
+
 
 def main():
     train_filename = './Dataset/Marathi_Train.csv'
@@ -14,6 +18,7 @@ def main():
     test_filename = './Dataset/Marathi_Test.csv'
     test_data = read_data(test_filename)
     test_data = test_data[['Tweet', 'Class']]
+
 
 if __name__ == '__main__':
     main()
