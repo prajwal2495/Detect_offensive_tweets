@@ -1,5 +1,13 @@
 import pandas as pd
-
+import warnings
+from keras.layers import Embedding, Dense, Activation
+from sklearn import metrics
+from sklearn.feature_extraction.text import TfidfVectorizer
+from sklearn.metrics import confusion_matrix, classification_report
+from sklearn.neural_network import MLPClassifier
+from sklearn.pipeline import make_pipeline
+from keras.models import Sequential
+warnings.filterwarnings("ignore")
 
 def read_data(filename):
     file_content = pd.read_csv(filename)
@@ -15,6 +23,10 @@ def TFIDF_Multi_Layer_Perceptron(train_data, test_data):
     y_test = test_data['Class']
     model.fit(X_train, y_train)
     labels = model.predict(X_test)
+    print("Accuracy:", metrics.accuracy_score(y_test, labels) * 100)
+    cm = confusion_matrix(y_test, labels, train_data['Class'].unique())
+    print("Confusion matrix", cm)
+
 
 def main():
     train_filename = './Dataset/Marathi_Train.csv'
