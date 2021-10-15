@@ -4,6 +4,7 @@ from sklearn.pipeline import make_pipeline
 from sklearn.feature_extraction.text import TfidfVectorizer, CountVectorizer
 from sklearn.metrics import confusion_matrix, classification_report
 from sklearn import metrics
+from sklearn.ensemble import GradientBoostingClassifier
 import warnings
 warnings.filterwarnings("ignore")
 
@@ -26,6 +27,10 @@ def TFIDF_KNN(train_data, test_data):
     print("Confusion matrix", cm)
     print(classification_report(y_test, labels, digits=4))
     print("\n\n")
+
+def TFIDF_GradientBoosting(train_data, test_data):
+    print("TFIDF + GradientBoost")
+    model = make_pipeline(TfidfVectorizer(ngram_range=(1, 1)), GradientBoostingClassifier(n_estimators=100, learning_rate=1.0,max_depth=1, random_state=0))
 
 
 def main():
