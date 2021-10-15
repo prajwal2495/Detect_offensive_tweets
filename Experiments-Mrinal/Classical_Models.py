@@ -1,6 +1,11 @@
 import pandas as pd
 from sklearn.neighbors import KNeighborsClassifier
+from sklearn.pipeline import make_pipeline
 from sklearn.feature_extraction.text import TfidfVectorizer, CountVectorizer
+from sklearn.metrics import confusion_matrix, classification_report
+from sklearn import metrics
+import warnings
+warnings.filterwarnings("ignore")
 
 def read_data(filename):
     file_content = pd.read_csv(filename)
@@ -16,6 +21,11 @@ def TFIDF_KNN(train_data, test_data):
     y_test = test_data['Class']
     model.fit(X_train, y_train)
     labels = model.predict(X_test)
+    print("Accuracy:", metrics.accuracy_score(y_test, labels) * 100)
+    cm = confusion_matrix(y_test, labels, train_data['Class'].unique())
+    print("Confusion matrix", cm)
+    print(classification_report(y_test, labels, digits=4))
+    print("\n\n")
 
 
 def main():
@@ -28,3 +38,7 @@ def main():
     test_data = test_data[['Tweet', 'Class']]
 
     TFIDF_KNN(train_data, test_data)
+
+
+if __name__ == '__main__':
+    main()
