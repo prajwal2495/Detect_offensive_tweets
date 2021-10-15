@@ -39,3 +39,19 @@ model.add(Dropout(0.2))
 model.add(Dense(2,activation='softmax'))
 model.compile(loss = 'binary_crossentropy', optimizer='adam',metrics = ['accuracy'])
 print(model.summary())
+
+
+
+#Here we train the Network.
+
+model.fit(X, Y, batch_size =batch_size, verbose = 5)
+score, acc = model.evaluate(X_valid, Y_valid, verbose = 2, batch_size=batch_size)
+
+from keras import backend as K
+def f1(y_true, y_pred):
+    def recall(y_true, y_pred):
+        true_positives = K.sum(K.round(K.clip(y_true * y_pred, 0, 1)))
+        possible_positives = K.sum(K.round(K.clip(y_true, 0, 1)))
+        recall = true_positives / (possible_positives + K.epsilon())
+        print("recall====", recall)
+        return recall
