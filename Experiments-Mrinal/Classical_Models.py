@@ -23,6 +23,7 @@ def TFIDF_KNN(train_data, test_data):
     model.fit(X_train, y_train)
     labels = model.predict(X_test)
     print("Accuracy:", metrics.accuracy_score(y_test, labels) * 100)
+    # takes a lot of time to generate 10 trees and find accuracy
     cm = confusion_matrix(y_test, labels, train_data['Class'].unique())
     print("Confusion matrix", cm)
     print(classification_report(y_test, labels, digits=4))
@@ -38,7 +39,8 @@ def TFIDF_GradientBoosting(train_data, test_data):
     y_test = test_data['Class']
     model.fit(X_train, y_train)
     labels = model.predict(X_test)
-
+    
+    # takes a lot of time to generate 10 trees and find accuracy
     print("Accuracy:", metrics.accuracy_score(y_test, labels) * 100)
     cm = confusion_matrix(y_test, labels, train_data['Class'].unique())
     print("Confusion matrix", cm)
