@@ -42,6 +42,8 @@ def TFIDF_GradientBoosting(train_data, test_data):
     print("Accuracy:", metrics.accuracy_score(y_test, labels) * 100)
     cm = confusion_matrix(y_test, labels, train_data['Class'].unique())
     print("Confusion matrix", cm)
+    print(classification_report(y_test, labels, digits=4))
+    print("\n\n")
 
 def main():
     train_filename = './Data/Marathi_Train.csv'
