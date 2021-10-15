@@ -1,6 +1,7 @@
 import pandas as pd
 import tensorflow as tf
 from tensorflow import keras
+from keras import backend as K
 from keras.preprocessing.text import Tokenizer
 from tensorflow.keras.preprocessing.sequence import pad_sequences
 from sklearn.model_selection import train_test_split
@@ -47,7 +48,7 @@ print(model.summary())
 model.fit(X, Y, batch_size =batch_size, verbose = 5)
 score, acc = model.evaluate(X_valid, Y_valid, verbose = 2, batch_size=batch_size)
 
-from keras import backend as K
+
 def f1(y_true, y_pred):
     def recall(y_true, y_pred):
         true_positives = K.sum(K.round(K.clip(y_true * y_pred, 0, 1)))
@@ -55,3 +56,27 @@ def f1(y_true, y_pred):
         recall = true_positives / (possible_positives + K.epsilon())
         print("recall====", recall)
         return recall
+
+    def precision(y_true, y_pred):
+        true_positives = K.sum(K.round(K.clip(y_true * y_pred, 0, 1)))
+        predicted_positives = K.sum(K.round(K.clip(y_pred, 0, 1)))
+        precision = true_positives / (predicted_positives + K.epsilon())
+        print("precision= ", precision)
+        return precision
+
+    precision = precision(y_true, y_pred)
+    recall = recall(y_true, y_pred)
+    print("F1 score", 2 * ((precision * recall) / (precision + recall + K.epsilon())))
+    return 2 * ((precision * recall) / (precision + recall + K.epsilon()))
+
+METRICS = [
+    keras.metrics.TruePositives(name='tp'),
+    keras.metrics.FalsePositives(name='fp'),
+    keras.metrics.TrueNegatives(name='tn'),
+    keras.metrics.FalseNegatives(name='fn'),
+    keras.metrics.BinaryAccuracy(name='accuracy'),
+    keras.metrics.Precision(name='precision'),
+    keras.metrics.Recall(name='recall'),
+    keras.metrics.AUC(name='auc'),
+]
+
