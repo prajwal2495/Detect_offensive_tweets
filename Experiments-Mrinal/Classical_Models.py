@@ -31,7 +31,17 @@ def TFIDF_KNN(train_data, test_data):
 def TFIDF_GradientBoosting(train_data, test_data):
     print("TFIDF + GradientBoost")
     model = make_pipeline(TfidfVectorizer(ngram_range=(1, 1)), GradientBoostingClassifier(n_estimators=100, learning_rate=1.0,max_depth=1, random_state=0))
+    X_train = train_data['Tweet']
+    y_train = train_data['Class']
+    X_test = test_data['Tweet']
 
+    y_test = test_data['Class']
+    model.fit(X_train, y_train)
+    labels = model.predict(X_test)
+
+    print("Accuracy:", metrics.accuracy_score(y_test, labels) * 100)
+    cm = confusion_matrix(y_test, labels, train_data['Class'].unique())
+    print("Confusion matrix", cm)
 
 def main():
     train_filename = './Data/Marathi_Train.csv'
@@ -43,6 +53,7 @@ def main():
     test_data = test_data[['Tweet', 'Class']]
 
     TFIDF_KNN(train_data, test_data)
+    TFIDF_GradientBoosting(train_data, test_data)
 
 
 if __name__ == '__main__':
