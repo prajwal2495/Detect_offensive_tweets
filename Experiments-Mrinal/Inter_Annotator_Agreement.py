@@ -17,6 +17,9 @@ def main():
 
         print(agreement)
 
+def main2():
+    files = ['./Inter_Annotator_Data/Mayuresh_mrinal.xlsx', './Inter_Annotator_Data/mrinal.xlsx']
+
 
 if __name__ == '__main__':
     main()
