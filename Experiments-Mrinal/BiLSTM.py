@@ -1,4 +1,15 @@
+from importlib import  reload
+import sys
+from imp import  reload
+
 import pandas as pd
+import tensorflow as tf
+import tensorflow.keras as keras
+from tensorflow.keras.preprocessing.text import Tokenizer
+from tensorflow.keras.preprocessing.sequence import pad_sequences
+from tensorflow.keras.layers import Concatenate, Dense, Input, LSTM, Embedding, Dropout, Activation, GRU, Flatten
+from tensorflow.keras.layers import Bidirectional, GlobalMaxPool1D
+from tensorflow.keras.models import Model, Sequential
 
 def read_data(filename):
     file_content = pd.read_csv(filename)
@@ -36,3 +47,10 @@ class Attention(tf.keras.Model):
         self.W2 = tf.keras.layers.Dense(units)
         self.V = tf.keras.layers.Dense(1)
 
+    def call(self, features, hidden):
+        hidden_with_time_axis = tf.expand_dims(hidden, 1)
+
+        score = tf.nn.tanh(
+            self.W1(features) + self.W2(hidden_with_time_axis))
+        # attention_weights shape == (batch_size, max_length, 1)
+        attention_weights = tf.nn.softmax(self.V(score), axis=1)
