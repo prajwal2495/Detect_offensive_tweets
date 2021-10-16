@@ -54,3 +54,7 @@ class Attention(tf.keras.Model):
             self.W1(features) + self.W2(hidden_with_time_axis))
         # attention_weights shape == (batch_size, max_length, 1)
         attention_weights = tf.nn.softmax(self.V(score), axis=1)
+
+        context_vector = attention_weights * features
+        context_vector = tf.reduce_sum(context_vector, axis=1)
+        return context_vector, attention_weights
