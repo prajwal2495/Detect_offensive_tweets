@@ -31,4 +31,8 @@ embedded_sequences = Embedding(MAX_FEATURES, EMBED_SIZE)(sequence_input)
 
 class Attention(tf.keras.Model):
     def __init__(self, units):
-       
+        super(Attention, self).__init__()
+        self.W1 = tf.keras.layers.Dense(units)
+        self.W2 = tf.keras.layers.Dense(units)
+        self.V = tf.keras.layers.Dense(1)
+
