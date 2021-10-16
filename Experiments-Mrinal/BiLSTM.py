@@ -18,6 +18,9 @@ tokenizer = Tokenizer(num_words=MAX_FEATURES, lower=True,split=' ')
 tokenizer.fit_on_texts(train_data['Tweet'].values)
 list_tokenized_train = tokenizer.texts_to_sequences(train_data['Tweet'].values)
 
+RNN_CELL_SIZE = 32
+MAX_LEN = 300
+
 X_train = pad_sequences(list_tokenized_train)
 
 X_valid = tokenizer.texts_to_sequences(test_data['Tweet'].values)
@@ -25,3 +28,7 @@ X_valid = pad_sequences(X_valid)
 
 sequence_input = Input(shape=(MAX_LEN,), dtype="int32")
 embedded_sequences = Embedding(MAX_FEATURES, EMBED_SIZE)(sequence_input)
+
+class Attention(tf.keras.Model):
+    def __init__(self, units):
+       
