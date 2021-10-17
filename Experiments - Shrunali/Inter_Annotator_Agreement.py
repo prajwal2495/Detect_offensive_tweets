@@ -19,7 +19,24 @@ def main():
 
 def main2():
     files = ['./Inter_Annotator_Data/Mayuresh_mrinal.xlsx', './Inter_Annotator_Data/mrinal.xlsx']
+    # prefix="Annotated Data//"
+    file_contents = pd.DataFrame()
+    # What if duplicates?
+    duplicate = 0
+    for file in files:
+        file_content = pd.read_excel(file)
+        if duplicate % 2 == 0:
+            file_contents.append(file_content)
+        else:
+            file_contents.append(file_content[100:])  # need to append after 100th
+        duplicate += 1
+    # print(len(file_contents))
+    # print(file_contents['Class'].unique())
+    file_contents = file_contents[file_contents.Class != 'invalid']
+    print(len(file_contents[file_contents['Class'] == 'offensive']))
+    print(len(file_contents[file_contents['Class'] == 'not offensive']))
 
 
 if __name__ == '__main__':
+    # main2()
     main()
