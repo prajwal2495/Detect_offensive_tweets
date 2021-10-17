@@ -10,6 +10,15 @@ from tensorflow.keras.preprocessing.sequence import pad_sequences
 from tensorflow.keras.layers import Concatenate, Dense, Input, LSTM, Embedding, Dropout, Activation, GRU, Flatten
 from tensorflow.keras.layers import Bidirectional, GlobalMaxPool1D
 from tensorflow.keras.models import Model, Sequential
+import numpy as np
+import matplotlib as mpl
+import matplotlib.pyplot as plt
+import seaborn as sns
+from sklearn.metrics import (classification_report,
+                             confusion_matrix,
+                             roc_auc_score)
+get_ipython().run_line_magic('matplotlib', 'inline')
+get_ipython().run_line_magic('config', "InlineBackend.figure_format = 'retina'")
 
 def read_data(filename):
     file_content = pd.read_csv(filename)
@@ -90,3 +99,13 @@ model.compile(loss='binary_crossentropy',
               metrics=METRICS)
 
 print(X_train.shape, Y_train.shape)
+BATCH_SIZE = 100
+EPOCHS = 3
+history = model.fit(X_train,Y_train,
+                    batch_size=BATCH_SIZE,
+                    epochs=EPOCHS,
+                    validation_split=0.2)
+prediction = model.predict(X_valid)
+y_pred = (prediction > 0.5)
+report = classification_report(Y_valid, y_pred, digits=4)
+print(report)
