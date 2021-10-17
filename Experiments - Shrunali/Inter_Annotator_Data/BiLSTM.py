@@ -58,3 +58,35 @@ class Attention(tf.keras.Model):
         context_vector = attention_weights * features
         context_vector = tf.reduce_sum(context_vector, axis=1)
         return context_vector, attention_weights
+
+lstm = Bidirectional(LSTM(RNN_CELL_SIZE, return_sequences = True), name="bi_lstm_0")(embedded_sequences)
+# Getting our LSTM outputs
+(lstm, forward_h, forward_c, backward_h, backward_c) = Bidirectional(LSTM(RNN_CELL_SIZE, return_sequences=True, return_state=True), name="bi_lstm_1")(lstm)
+
+state_h = Concatenate()([forward_h, backward_h])
+state_c = Concatenate()([forward_c, backward_c])
+context_vector, attention_weights = Attention(10)(lstm, state_h)
+dense1 = Dense(20, activation="relu")(context_vector)
+dropout = Dropout(0.05)(dense1)
+output = Dense(1, activation="sigmoid")(dropout)
+
+model = keras.Model(inputs=sequence_input, outputs=output)
+print(model.summary())
+keras.utils.plot_model(model, show_shapes=True, dpi=90)
+
+METRICS = [
+    keras.metrics.TruePositives(name='tp'),
+    keras.metrics.FalsePositives(name='fp'),
+    keras.metrics.TrueNegatives(name='tn'),
+    keras.metrics.FalseNegatives(name='fn'),
+    keras.metrics.BinaryAccuracy(name='accuracy'),
+    keras.metrics.Precision(name='precision'),
+    keras.metrics.Recall(name='recall'),
+    keras.metrics.AUC(name='auc'),
+]
+
+model.compile(loss='binary_crossentropy',
+              optimizer='adam',
+              metrics=METRICS)
+
+print(X_train.shape, Y_train.shape)
