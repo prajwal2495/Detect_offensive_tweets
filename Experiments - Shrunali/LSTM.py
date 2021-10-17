@@ -109,3 +109,20 @@ def plot_cm(labels, predictions, p=0.5):
     plt.title("Confusion matrix (non-normalized))")
     plt.ylabel("Actual label")
     plt.xlabel("Predicted label")
+
+
+newLabels = []
+for val in Y_valid:
+    if val[0] == True and val[1] == False:
+        newLabels.append(1)
+    else:
+        newLabels.append(0)
+
+newPred = []
+for val in y_pred:
+    if val[0] == True and val[1] == False:
+        newPred.append(1)
+    else:
+        newPred.append(0)
+print(metrics.accuracy_score(newLabels, newPred)*100)
+plot_cm(newLabels, newPred)
