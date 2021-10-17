@@ -22,7 +22,7 @@ def main2():
     files = ['./Inter_Annotator_Data/mrinal_Shrunali.xlsx', './Inter_Annotator_Data/shrunali.xlsx', './Inter_Annotator_Data/mayuresh.xlsx']
     #prefix="Annotated Data//"
     file_contents=pd.DataFrame()
-    # What if duplicates?
+    # What if duplicates ?
     duplicate=0
     for file in files:
         file_content=pd.read_excel(file)
