@@ -108,4 +108,15 @@ history = model.fit(X_train,Y_train,
 prediction = model.predict(X_valid)
 y_pred = (prediction > 0.5)
 report = classification_report(Y_valid, y_pred, digits=4)
-print(report)
+#print(report)
+
+def plot_cm(labels, predictions, p=0.5):
+    cm = confusion_matrix(labels, predictions)
+    plt.figure(figsize=(5, 5))
+    sns.heatmap(cm, annot=True, fmt="d")
+    plt.title("Confusion matrix (non-normalized))")
+    plt.ylabel("Actual label")
+    plt.xlabel("Predicted label")
+
+
+plot_cm(Y_valid, y_pred)
