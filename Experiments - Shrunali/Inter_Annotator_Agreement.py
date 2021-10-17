@@ -38,10 +38,6 @@ def main2():
     print(len(file_contents[file_contents['Class'] == 'not offensive']))
 
 
-
-
-
-
 if __name__ == '__main__':
     #main2()
     main()

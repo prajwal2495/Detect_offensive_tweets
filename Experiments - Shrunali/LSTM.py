@@ -9,6 +9,14 @@ from tensorflow.keras.layers import Embedding
 from tensorflow.keras.layers import LSTM
 from tensorflow.keras.layers import Dense
 from tensorflow.keras.layers import Dropout
+import numpy as np
+import matplotlib as mpl
+import matplotlib.pyplot as plt
+import seaborn as sns
+from sklearn import metrics
+from sklearn.metrics import (classification_report,
+                             confusion_matrix,
+                             roc_auc_score)
 
 def read_data(filename):
     file_content = pd.read_csv(filename)
@@ -80,3 +88,24 @@ METRICS = [
     keras.metrics.AUC(name='auc'),
 ]
 
+model.compile(loss='binary_crossentropy',optimizer= "adam",metrics=METRICS)
+model.fit(X, Y, batch_size =batch_size, verbose = 5)
+# score, acc = model.evaluate(X_valid, Y_valid, verbose = 2, batch_size=batch_size)
+
+prediction = model.predict(X_valid)
+y_pred = (prediction > 0.5)
+
+get_ipython().run_line_magic('matplotlib', 'inline')
+get_ipython().run_line_magic('config', "InlineBackend.figure_format = 'retina'")
+
+report = classification_report(Y_valid, y_pred, digits=4)
+print(report)
+def plot_cm(labels, predictions, p=0.5):
+    # print(labels)
+    # print(predictions)
+    cm = confusion_matrix(labels, predictions)
+    plt.figure(figsize=(5, 5))
+    sns.heatmap(cm, annot=True, fmt="d")
+    plt.title("Confusion matrix (non-normalized))")
+    plt.ylabel("Actual label")
+    plt.xlabel("Predicted label")
