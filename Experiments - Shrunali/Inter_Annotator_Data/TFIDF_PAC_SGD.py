@@ -2,9 +2,12 @@ import pandas as pd
 import warnings
 
 from sklearn import metrics
+from sklearn.feature_extraction.text import TfidfVectorizer
 from sklearn.linear_model import PassiveAggressiveClassifier, SGDClassifier
-from sklearn.metrics import roc_curve, auc
+from sklearn.metrics import roc_curve, auc, confusion_matrix, classification_report
 from sklearn.metrics import roc_auc_score
+from sklearn.pipeline import make_pipeline
+
 
 def read_data(filename):
     file_content = pd.read_csv(filename)
