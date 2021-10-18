@@ -310,8 +310,8 @@ def main():
     
     test_filename = './Data/MOLDV2_Test.csv'
     test_data = read_data(test_filename)
-    test_data = test_data[['Tweet', 'Class']]
-    test_data = test_data[test_data['Class'].notna()]
+    test_data = test_data[['tweet', 'subtask_a']]
+    test_data = test_data[test_data['subtask_a'].notna()]
     # print(len(train_data[train_data['Class'] == 'offensive']))
     # print(len(train_data[train_data['Class'] == 'not offensive']))
     #
