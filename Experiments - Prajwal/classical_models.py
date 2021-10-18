@@ -294,7 +294,7 @@ def word_clouds(tweets):
 
 
 def main():
-    train_filename = './Data/MOLDV2_Train.csv'
+    train_filename = 'Data/OLD_DATA/MOLDV2_Train.csv'
 
     train_data = read_data(train_filename)
     word_clouds(train_data[['tweet']])

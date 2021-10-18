@@ -52,7 +52,7 @@ def demoji(text):
 
 def main():
     # csv file
-    input_file = 'Data/MOLDV2_Train.csv'
+    input_file = 'Data/OLD_DATA/MOLDV2_Train.csv'
 
     dataset = pd.read_csv(input_file)
 
