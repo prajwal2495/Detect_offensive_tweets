@@ -49,7 +49,7 @@ def TFIDF_Decision(train_data, test_data):
     # takes a lot of time to generate 10 trees and find accuracy
     # print(cross_val_score(model, X, y, cv=10))
     cm = confusion_matrix(y_test, labels)#, train_data['Class'].unique())
-    print("Confusion matrix", cm)
+    print("Confusion matrix\n", cm)
     print(classification_report(y_test, labels, digits = 4))
     print("\n\n")
 
@@ -68,7 +68,7 @@ def TFIDF_Random_forest(train_data, test_data):
     # takes a lot of time to generate 10 trees and find accuracy
     # print(cross_val_score(model, X, y, cv=10))
     cm = confusion_matrix(y_test, labels)#, train_data['Class'].unique())
-    print("Confusion matrix", cm)
+    print("Confusion matrix\n", cm)
     print(classification_report(y_test, labels, digits = 4))
     print("\n\n")
 
@@ -114,7 +114,7 @@ def TFIDF_Multi_Naive_Bayes(train_data, test_data):
     # takes a lot of time to generate 10 trees and find accuracy
     # print(cross_val_score(model, X, y, cv=10))
     cm = confusion_matrix(y_test, labels)#, train_data['Class'].unique())
-    print("Confusion matrix", cm)
+    print("Confusion matrix\n", cm)
     print(classification_report(y_test, labels, digits = 4))
     print("\n\n")
 
@@ -132,7 +132,7 @@ def BOW_Random_forest(train_data, test_data):
     # takes a lot of time to generate 10 trees and find accuracy
     # print(cross_val_score(model, X, y, cv=10))
     cm = confusion_matrix(y_test, labels)#, train_data['Class'].unique())
-    print("Confusion matrix", cm)
+    print("Confusion matrix\n", cm)
     print(classification_report(y_test, labels, digits = 4))
     print("\n\n")
 
@@ -151,7 +151,7 @@ def BOW_Decision_Tree(train_data, test_data):
     # takes a lot of time to generate 10 trees and find accuracy
     # print(cross_val_score(model, X, y, cv=10))
     cm = confusion_matrix(y_test, labels)#, train_data['Class'].unique())
-    print("Confusion matrix", cm)
+    print("Confusion matrix\n", cm)
     print(classification_report(y_test, labels, digits = 4))
     print("\n\n")
 
@@ -170,7 +170,7 @@ def BOW_Multi_Naive_Bayes(train_data, test_data):
     # takes a lot of time to generate 10 trees and find accuracy
     # print(cross_val_score(model, X, y, cv=10))
     cm = confusion_matrix(y_test, labels)#, train_data['Class'].unique())
-    print("Confusion matrix", cm)
+    print("Confusion matrix\n", cm)
     print(classification_report(y_test, labels, digits = 4))
     print("\n\n")
 
@@ -226,7 +226,7 @@ def LDA_Random_forest(train_data, test_data):
     # takes a lot of time to generate 10 trees and find accuracy
     # print(cross_val_score(model, X, y, cv=10))
     cm = confusion_matrix(y_test, labels)#, train_data['Class'].unique())
-    print("Confusion matrix", cm)
+    print("Confusion matrix\n", cm)
     print(classification_report(y_test, labels, digits = 4))
     print("\n\n")
 
@@ -245,7 +245,7 @@ def LDA_Multi_Naive_Bayes(train_data, test_data):
     # takes a lot of time to generate 10 trees and find accuracy
     # print(cross_val_score(model, X, y, cv=10))
     cm = confusion_matrix(y_test, labels)#, train_data['Class'].unique())
-    print("Confusion matrix", cm)
+    print("Confusion matrix\n", cm)
     print(classification_report(y_test, labels, digits = 4))
     print("\n\n")
 
@@ -264,7 +264,7 @@ def LDA_Decision(train_data, test_data):
     # takes a lot of time to generate 10 trees and find accuracy
     # print(cross_val_score(model, X, y, cv=10))
     cm = confusion_matrix(y_test, labels)#, train_data['Class'].unique())
-    print("Confusion matrix", cm)
+    print("Confusion matrix\n", cm)
     print(classification_report(y_test, labels, digits = 4))
     print("\n\n")
 
@@ -313,14 +313,14 @@ def main():
     test_data = test_data[['tweet', 'subtask_a']]
     test_data = test_data[test_data['subtask_a'].notna()]
 
-    print(len(train_data[train_data['subtask_a'] == 'offensive']))
-    print(len(train_data[train_data['subtask_a'] == 'not offensive']))
-
-    print(len(test_data[test_data['subtask_a'] == 'offensive']))
-    print(len(test_data[test_data['subtask_a'] == 'not offensive']))
-
-    print(len(train_data))
-    print(len(test_data))
+    # print(len(train_data[train_data['subtask_a'] == 'offensive']))
+    # print(len(train_data[train_data['subtask_a'] == 'not offensive']))
+    #
+    # print(len(test_data[test_data['subtask_a'] == 'offensive']))
+    # print(len(test_data[test_data['subtask_a'] == 'not offensive']))
+    #
+    # print(len(train_data))
+    # print(len(test_data))
 
     TFIDF_Decision(train_data, test_data)
     TFIDF_Multi_Naive_Bayes(train_data, test_data)
