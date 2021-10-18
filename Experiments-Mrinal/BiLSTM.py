@@ -10,6 +10,15 @@ from tensorflow.keras.preprocessing.sequence import pad_sequences
 from tensorflow.keras.layers import Concatenate, Dense, Input, LSTM, Embedding, Dropout, Activation, GRU, Flatten
 from tensorflow.keras.layers import Bidirectional, GlobalMaxPool1D
 from tensorflow.keras.models import Model, Sequential
+import numpy as np
+import matplotlib as mpl
+import matplotlib.pyplot as plt
+import seaborn as sns
+from sklearn.metrics import (classification_report,
+                             confusion_matrix,
+                             roc_auc_score)
+get_ipython().run_line_magic('matplotlib', 'inline')
+get_ipython().run_line_magic('config', "InlineBackend.figure_format = 'retina'")
 
 def read_data(filename):
     file_content = pd.read_csv(filename)
@@ -58,3 +67,56 @@ class Attention(tf.keras.Model):
         context_vector = attention_weights * features
         context_vector = tf.reduce_sum(context_vector, axis=1)
         return context_vector, attention_weights
+
+lstm = Bidirectional(LSTM(RNN_CELL_SIZE, return_sequences = True), name="bi_lstm_0")(embedded_sequences)
+# Getting our LSTM outputs
+(lstm, forward_h, forward_c, backward_h, backward_c) = Bidirectional(LSTM(RNN_CELL_SIZE, return_sequences=True, return_state=True), name="bi_lstm_1")(lstm)
+
+state_h = Concatenate()([forward_h, backward_h])
+state_c = Concatenate()([forward_c, backward_c])
+context_vector, attention_weights = Attention(10)(lstm, state_h)
+dense1 = Dense(20, activation="relu")(context_vector)
+dropout = Dropout(0.05)(dense1)
+output = Dense(1, activation="sigmoid")(dropout)
+
+model = keras.Model(inputs=sequence_input, outputs=output)
+print(model.summary())
+keras.utils.plot_model(model, show_shapes=True, dpi=90)
+
+METRICS = [
+    keras.metrics.TruePositives(name='tp'),
+    keras.metrics.FalsePositives(name='fp'),
+    keras.metrics.TrueNegatives(name='tn'),
+    keras.metrics.FalseNegatives(name='fn'),
+    keras.metrics.BinaryAccuracy(name='accuracy'),
+    keras.metrics.Precision(name='precision'),
+    keras.metrics.Recall(name='recall'),
+    keras.metrics.AUC(name='auc'),
+]
+
+model.compile(loss='binary_crossentropy',
+              optimizer='adam',
+              metrics=METRICS)
+
+print(X_train.shape, Y_train.shape)
+BATCH_SIZE = 100
+EPOCHS = 3
+history = model.fit(X_train,Y_train,
+                    batch_size=BATCH_SIZE,
+                    epochs=EPOCHS,
+                    validation_split=0.2)
+prediction = model.predict(X_valid)
+y_pred = (prediction > 0.5)
+report = classification_report(Y_valid, y_pred, digits=4)
+#print(report)
+
+def plot_cm(labels, predictions, p=0.5):
+    cm = confusion_matrix(labels, predictions)
+    plt.figure(figsize=(5, 5))
+    sns.heatmap(cm, annot=True, fmt="d")
+    plt.title("Confusion matrix (non-normalized))")
+    plt.ylabel("Actual label")
+    plt.xlabel("Predicted label")
+
+
+plot_cm(Y_valid, y_pred)
