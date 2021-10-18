@@ -38,11 +38,11 @@ def tokenize(sentences):
 def TFIDF_Decision(train_data, test_data):
     print("TFIDF + Decision tree")
     model = make_pipeline(TfidfVectorizer(ngram_range=(1,1)), DecisionTreeClassifier())
-    X_train = train_data['Tweet']
-    y_train = train_data['Class']
+    X_train = train_data['tweet']
+    y_train = train_data['subtask_a']
 
-    X_test = test_data['Tweet']
-    y_test = test_data['Class']
+    X_test = test_data['tweet']
+    y_test = test_data['subtask_a']
     model.fit(X_train, y_train)
     labels = model.predict(X_test)
     print("Accuracy:", metrics.accuracy_score(y_test, labels) * 100)
@@ -57,11 +57,11 @@ def TFIDF_Decision(train_data, test_data):
 def TFIDF_Random_forest(train_data, test_data):
     print("TFIDF + Random forest")
     model = make_pipeline(TfidfVectorizer(ngram_range=(1,1)), RandomForestClassifier())
-    X_train = train_data['Tweet']
-    y_train = train_data['Class']
+    X_train = train_data['tweet']
+    y_train = train_data['subtask_a']
 
-    X_test = test_data['Tweet']
-    y_test = test_data['Class']
+    X_test = test_data['tweet']
+    y_test = test_data['subtask_a']
     model.fit(X_train, y_train)
     labels = model.predict(X_test)
     print("Accuracy:", metrics.accuracy_score(y_test, labels) * 100)
@@ -75,11 +75,11 @@ def TFIDF_Random_forest(train_data, test_data):
 def TFIDF_SVM(train_data, test_data):
     print("TFIDF + SVM")
     model = make_pipeline(TfidfVectorizer(ngram_range=(1,1)), SVC())
-    X_train = train_data['Tweet']
-    y_train = train_data['Class']
+    X_train = train_data['tweet']
+    y_train = train_data['subtask_a']
 
-    X_test = test_data['Tweet']
-    y_test = test_data['Class']
+    X_test = test_data['tweet']
+    y_test = test_data['subtask_a']
     model.fit(X_train, y_train)
     #AUC_ARRAY = []
     #alpha = [10 ** x for x in range(-5, 4)]
@@ -103,11 +103,11 @@ def TFIDF_SVM(train_data, test_data):
 def TFIDF_Multi_Naive_Bayes(train_data, test_data):
     print("TFIDF + MultiNomial Naive Bayes")
     model = make_pipeline(TfidfVectorizer(ngram_range=(1,1)), MultinomialNB())
-    X_train = train_data['Tweet']
-    y_train = train_data['Class']
+    X_train = train_data['tweet']
+    y_train = train_data['subtask_a']
 
-    X_test = test_data['Tweet']
-    y_test = test_data['Class']
+    X_test = test_data['tweet']
+    y_test = test_data['subtask_a']
     model.fit(X_train, y_train)
     labels = model.predict(X_test)
     print("Accuracy:", metrics.accuracy_score(y_test, labels) * 100)
@@ -121,11 +121,11 @@ def TFIDF_Multi_Naive_Bayes(train_data, test_data):
 def BOW_Random_forest(train_data, test_data):
     print("BOW + Random forest")
     model = make_pipeline(CountVectorizer(ngram_range=(1, 1)), RandomForestClassifier())
-    X_train = train_data['Tweet']
-    y_train = train_data['Class']
+    X_train = train_data['tweet']
+    y_train = train_data['subtask_a']
 
-    X_test = test_data['Tweet']
-    y_test = test_data['Class']
+    X_test = test_data['tweet']
+    y_test = test_data['subtask_a']
     model.fit(X_train, y_train)
     labels = model.predict(X_test)
     print("Accuracy:", metrics.accuracy_score(y_test, labels) * 100)
@@ -140,11 +140,11 @@ def BOW_Random_forest(train_data, test_data):
 def BOW_Decision_Tree(train_data, test_data):
     print("BOW + Decsion Tree")
     model = make_pipeline(CountVectorizer(ngram_range=(1, 1)), DecisionTreeClassifier())
-    X_train = train_data['Tweet']
-    y_train = train_data['Class']
+    X_train = train_data['tweet']
+    y_train = train_data['subtask_a']
 
-    X_test = test_data['Tweet']
-    y_test = test_data['Class']
+    X_test = test_data['tweet']
+    y_test = test_data['subtask_a']
     model.fit(X_train, y_train)
     labels = model.predict(X_test)
     print("Accuracy:", metrics.accuracy_score(y_test, labels) * 100)
@@ -159,11 +159,11 @@ def BOW_Decision_Tree(train_data, test_data):
 def BOW_Multi_Naive_Bayes(train_data, test_data):
     print("BOW + Naive Bayes")
     model = make_pipeline(CountVectorizer(ngram_range=(1, 1)), MultinomialNB())
-    X_train = train_data['Tweet']
-    y_train = train_data['Class']
+    X_train = train_data['tweet']
+    y_train = train_data['subtask_a']
 
-    X_test = test_data['Tweet']
-    y_test = test_data['Class']
+    X_test = test_data['tweet']
+    y_test = test_data['subtask_a']
     model.fit(X_train, y_train)
     labels = model.predict(X_test)
     print("Accuracy:", metrics.accuracy_score(y_test, labels) * 100)
@@ -179,11 +179,11 @@ def BOW_SVM(train_data, test_data):
     print("BOW + SVM")
     model = make_pipeline(CountVectorizer(ngram_range=(1,1)), SVC())
     # model = make_pipeline(TfidfVectorizer(), SVC())
-    X_train = train_data['Tweet']
-    y_train = train_data['Class']
+    X_train = train_data['tweet']
+    y_train = train_data['subtask_a']
 
-    X_test = test_data['Tweet']
-    y_test = test_data['Class']
+    X_test = test_data['tweet']
+    y_test = test_data['subtask_a']
     model.fit(X_train, y_train)
     labels = model.predict(X_test)
     print("Accuracy:", metrics.accuracy_score(y_test, labels) * 100)
@@ -197,11 +197,11 @@ def BOW_SVM(train_data, test_data):
 def LDA_SVM(train_data, test_data):
     print("LDA + SVM")
     model = make_pipeline(CountVectorizer(), LDA(), SVC())
-    X_train = train_data['Tweet']
-    y_train = train_data['Class']
+    X_train = train_data['tweet']
+    y_train = train_data['subtask_a']
 
-    X_test = test_data['Tweet']
-    y_test = test_data['Class']
+    X_test = test_data['tweet']
+    y_test = test_data['subtask_a']
     model.fit(X_train, y_train)
     labels = model.predict(X_test)
     print("Accuracy:", metrics.accuracy_score(y_test, labels) * 100)
@@ -215,11 +215,11 @@ def LDA_SVM(train_data, test_data):
 def LDA_Random_forest(train_data, test_data):
     print("LDA + Random forest")
     model = make_pipeline(CountVectorizer(), LDA(), RandomForestClassifier())
-    X_train = train_data['Tweet']
-    y_train = train_data['Class']
+    X_train = train_data['tweet']
+    y_train = train_data['subtask_a']
 
-    X_test = test_data['Tweet']
-    y_test = test_data['Class']
+    X_test = test_data['tweet']
+    y_test = test_data['subtask_a']
     model.fit(X_train, y_train)
     labels = model.predict(X_test)
     print("Accuracy:", metrics.accuracy_score(y_test, labels) * 100)
@@ -234,11 +234,11 @@ def LDA_Random_forest(train_data, test_data):
 def LDA_Multi_Naive_Bayes(train_data, test_data):
     print("LDA + MultiNomial Naive Bayes")
     model = make_pipeline(CountVectorizer(), LDA(), MultinomialNB())
-    X_train = train_data['Tweet']
-    y_train = train_data['Class']
+    X_train = train_data['tweet']
+    y_train = train_data['subtask_a']
 
-    X_test = test_data['Tweet']
-    y_test = test_data['Class']
+    X_test = test_data['tweet']
+    y_test = test_data['subtask_a']
     model.fit(X_train, y_train)
     labels = model.predict(X_test)
     print("Accuracy:", metrics.accuracy_score(y_test, labels) * 100)
@@ -253,11 +253,11 @@ def LDA_Multi_Naive_Bayes(train_data, test_data):
 def LDA_Decision(train_data, test_data):
     print("LDA + Decision tree")
     model = make_pipeline(CountVectorizer(), LDA(), DecisionTreeClassifier())
-    X_train = train_data['Tweet']
-    y_train = train_data['Class']
+    X_train = train_data['tweet']
+    y_train = train_data['subtask_a']
 
-    X_test = test_data['Tweet']
-    y_test = test_data['Class']
+    X_test = test_data['tweet']
+    y_test = test_data['subtask_a']
     model.fit(X_train, y_train)
     labels = model.predict(X_test)
     print("Accuracy:", metrics.accuracy_score(y_test, labels) * 100)
@@ -272,7 +272,7 @@ def LDA_Decision(train_data, test_data):
 def word_clouds(tweets):
     comment_words = ""
     map_of_words = {}
-    for tweet in tweets['Tweet']:
+    for tweet in str(tweets['tweet']):
         # comment_words += tweet + " "
         for word in tweet.split():
             if word in map_of_words:
@@ -294,12 +294,12 @@ def word_clouds(tweets):
 
 
 def main():
-    train_filename = './Data/Marathi_Train.csv'
+    train_filename = 'Data/OLD_DATA/MOLDV2_Train.csv'
 
     train_data = read_data(train_filename)
-    word_clouds(train_data[['Tweet']])
-    train_data = train_data[['Tweet', 'Class']]
-    train_data = train_data[train_data['Class'].notna()]
+    #word_clouds(train_data[['tweet']])
+    train_data = train_data[['tweet', 'subtask_a']]
+    train_data = train_data[train_data['subtask_a'].notna()]
 
     # x_train, y_train, x_test, y_test = train_test_split(train_data['Tweet'],train_data['Class'],test_size=0.3,random_state=42)
     # # print(x_train)
@@ -308,33 +308,34 @@ def main():
     # x_test.dropna()
     # y_test.dropna()
     
-    test_filename = './Data/Marathi_Test.csv'
+    test_filename = './Data/MOLDV2_Test.csv'
     test_data = read_data(test_filename)
-    test_data = test_data[['Tweet', 'Class']]
-    test_data = test_data[test_data['Class'].notna()]
-    # print(len(train_data[train_data['Class'] == 'offensive']))
-    # print(len(train_data[train_data['Class'] == 'not offensive']))
-    #
-    # print(len(test_data[test_data['Class'] == 'offensive']))
-    # print(len(test_data[test_data['Class'] == 'not offensive']))
-    #
-    # print(len(train_data))
-    # print(len(test_data))
+    test_data = test_data[['tweet', 'subtask_a']]
+    test_data = test_data[test_data['subtask_a'].notna()]
 
-    # TFIDF_Decision(train_data, test_data)
-    # TFIDF_Multi_Naive_Bayes(train_data, test_data)
-    # TFIDF_Random_forest(train_data, test_data)
+    print(len(train_data[train_data['subtask_a'] == 'offensive']))
+    print(len(train_data[train_data['subtask_a'] == 'not offensive']))
+
+    print(len(test_data[test_data['subtask_a'] == 'offensive']))
+    print(len(test_data[test_data['subtask_a'] == 'not offensive']))
+
+    print(len(train_data))
+    print(len(test_data))
+
+    TFIDF_Decision(train_data, test_data)
+    TFIDF_Multi_Naive_Bayes(train_data, test_data)
+    TFIDF_Random_forest(train_data, test_data)
     TFIDF_SVM(train_data, test_data)
 
-    # BOW_Decision_Tree(train_data, test_data)
-    # BOW_Multi_Naive_Bayes(train_data, test_data)
-    # BOW_Random_forest(train_data, test_data)
-    #BOW_SVM(train_data, test_data)
+    BOW_Decision_Tree(train_data, test_data)
+    BOW_Multi_Naive_Bayes(train_data, test_data)
+    BOW_Random_forest(train_data, test_data)
+    BOW_SVM(train_data, test_data)
 
-    # LDA_Decision(train_data, test_data)
-    # LDA_Multi_Naive_Bayes(train_data, test_data)
-    # LDA_Random_forest(train_data, test_data)
-    #LDA_SVM(train_data, test_data)
+    LDA_Decision(train_data, test_data)
+    LDA_Multi_Naive_Bayes(train_data, test_data)
+    LDA_Random_forest(train_data, test_data)
+    LDA_SVM(train_data, test_data)
 
 
 if __name__ == '__main__':
