@@ -1,6 +1,7 @@
 import tweepy
 from tweepy import OAuthHandler
 import json
+import csv
 import datetime as dt
 import time
 import os
@@ -104,13 +105,19 @@ def write_tweets(tweets, filename):
             f.write(',\n')
         f.write(']}')
 
+def write_to_csv(tweets, filename):
+    csv_file = open(filename,'a')
+    csvWriter = csv.writer(csv_file)
+    csvWriter.writerow([tweets[0].text])
+
+
 def main():
     ''' This is a script that continuously searches for tweets
         that were created over a given number of days. The search
         dates and search phrase can be changed below. '''
 
     ''' search variables: '''
-    search_phrases = ['पुची']
+    search_phrases = ['बिंडोक']
     time_limit = 1.5  # runtime limit in hours
     max_tweets = 1000  # number of tweets per search (will be
     # iterated over) - maximum is 1000
@@ -141,6 +148,7 @@ def main():
             d2 = dt.datetime.now() - dt.timedelta(days=min_days_old)
             day = '{0}-{1:0>2}-{2:0>2}_to_{3}-{4:0>2}-{5:0>2}'.format(
                 d1.year, d1.month, d1.day, d2.year, d2.month, d2.day)
+        csv_file = json_file_root + '_' + day + '.csv'
         json_file = json_file_root + '_' + day + '.json'
         if os.path.isfile(json_file):
             print('Appending tweets to file named: ', json_file)
@@ -180,8 +188,12 @@ def main():
                                           geocode=USA)
             # write tweets to file in JSON format
             if tweets:
-                write_tweets(tweets, json_file)
+                #print(tweets)
+                write_to_csv(tweets,csv_file)
                 exitcount = 0
+            #if tweets:
+            #    write_tweets(tweets, json_file)
+            #``    exitcount = 0
             else:
                 exitcount += 1
                 if exitcount == 3:
