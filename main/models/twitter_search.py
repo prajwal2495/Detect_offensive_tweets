@@ -110,7 +110,7 @@ def main():
         dates and search phrase can be changed below. '''
 
     ''' search variables: '''
-    search_phrases = ['पुची']
+    search_phrases = ['बिंडोक','पाद्रा','कुत्र्या','आईघाल्या','बुल्ल्या','आईचीगांड','लिंगपिसाट','झवन्या','झवाड्या']
     time_limit = 1.5  # runtime limit in hours
     max_tweets = 1000  # number of tweets per search (will be
     # iterated over) - maximum is 1000
