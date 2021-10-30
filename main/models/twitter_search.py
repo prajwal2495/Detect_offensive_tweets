@@ -108,7 +108,8 @@ def write_tweets(tweets, filename):
 def write_to_csv(tweets, filename):
     csv_file = open(filename,'a')
     csvWriter = csv.writer(csv_file)
-    csvWriter.writerow([tweets[0].text])
+    for i in range(len(tweets)):
+        csvWriter.writerow([tweets[i].text])
 
 
 def main():
@@ -117,7 +118,7 @@ def main():
         dates and search phrase can be changed below. '''
 
     ''' search variables: '''
-    search_phrases = ['बिंडोक']
+    search_phrases = ['पुच्ची']
     time_limit = 1.5  # runtime limit in hours
     max_tweets = 1000  # number of tweets per search (will be
     # iterated over) - maximum is 1000
