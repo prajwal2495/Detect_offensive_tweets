@@ -9,12 +9,20 @@ def clean_text(row, options):
     if options['lowercase']:
         row = str(row).lower()
 
+    if options['strip_spaces']:
+        row = str(row).strip()
+
     if options['remove_url']:
         row = str(row).replace('http\S+|www.\S+', '')
 
     if options['remove_mentions']:
         row = re.sub("@[A-Za-z0-9]+","@USER",row)
 
+    if options['remove_newline']:
+        row = re.sub(r'\n',' ',row)
+
+    if options['remove_tab']:
+        row = re.sub(r'\t',' ',row)
 
     if options['remove_english']:
         row = re.sub("[A-Za-z0-9]+","",row)
@@ -33,7 +41,10 @@ clean_config = {
     'lowercase': True,
     'remove_english': True,
     'remove_specials': True,
-    'add_USER_tag': True
+    'add_USER_tag': True,
+    'remove_newline':True,
+    'remove_tab':True,
+    'strip_spaces':True
     }
 
 
@@ -52,13 +63,14 @@ def demoji(text):
 
 def main():
     # csv file
-    input_file = 'Data/OLD_DATA/MOLDV2_Train.csv'
+    input_file = 'Data/आईची_2021-10-24_to_2021-10-29.csv'
 
     dataset = pd.read_csv(input_file)
 
     dataset_df = pd.DataFrame(dataset)
 
-    dataset_df = dataset_df[["tweet","subtask_a","subtask_b","subtask_c"]]
+    dataset_df = dataset_df[["tweet"]]
+    #, "subtask_a", "subtask_b", "subtask_c"
 
     #lowe case conversion
     dataset_df['tweet'] = dataset_df['tweet'].str.lower()
@@ -76,7 +88,7 @@ def main():
     dataset_df['tweet'] = dataset_df['tweet'].apply( lambda x : demoji(x))
 
     # convert df to csv
-    dataset_df.to_csv('./Data/Clean_MOLD_V2.csv',index = False)
+    dataset_df.to_csv('./Data/आईची_clean.csv',index = False)
 
 if __name__ == "__main__":
     main()
