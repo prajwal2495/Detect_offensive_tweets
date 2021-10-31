@@ -39,10 +39,10 @@ def TFIDF_Decision(train_data, test_data):
     print("TFIDF + Decision tree")
     model = make_pipeline(TfidfVectorizer(ngram_range=(1,1)), DecisionTreeClassifier())
     X_train = train_data['tweet'].values.astype('U')
-    y_train = train_data['subtask_a'].values.astype('U')
+    y_train = train_data['subtask_c'].values.astype('U')
 
     X_test = test_data['tweet'].values.astype('U')
-    y_test = test_data['subtask_a'].values.astype('U')
+    y_test = test_data['subtask_c'].values.astype('U')
     model.fit(X_train, y_train)
     labels = model.predict(X_test)
     print("Accuracy:", metrics.accuracy_score(y_test, labels) * 100)
@@ -58,10 +58,10 @@ def TFIDF_Random_forest(train_data, test_data):
     print("TFIDF + Random forest")
     model = make_pipeline(TfidfVectorizer(ngram_range=(1,1)), RandomForestClassifier())
     X_train = train_data['tweet'].values.astype('U')
-    y_train = train_data['subtask_a'].values.astype('U')
+    y_train = train_data['subtask_c'].values.astype('U')
 
     X_test = test_data['tweet'].values.astype('U')
-    y_test = test_data['subtask_a'].values.astype('U')
+    y_test = test_data['subtask_c'].values.astype('U')
 
     model.fit(X_train, y_train)
     labels = model.predict(X_test)
@@ -77,10 +77,10 @@ def TFIDF_SVM(train_data, test_data):
     print("TFIDF + SVM")
     model = make_pipeline(TfidfVectorizer(ngram_range=(1,1)), SVC())
     X_train = train_data['tweet'].values.astype('U')
-    y_train = train_data['subtask_a'].values.astype('U')
+    y_train = train_data['subtask_c'].values.astype('U')
 
     X_test = test_data['tweet'].values.astype('U')
-    y_test = test_data['subtask_a'].values.astype('U')
+    y_test = test_data['subtask_c'].values.astype('U')
 
     model.fit(X_train, y_train)
     #AUC_ARRAY = []
@@ -106,10 +106,10 @@ def TFIDF_Multi_Naive_Bayes(train_data, test_data):
     print("TFIDF + MultiNomial Naive Bayes")
     model = make_pipeline(TfidfVectorizer(ngram_range=(1,1)), MultinomialNB())
     X_train = train_data['tweet'].values.astype('U')
-    y_train = train_data['subtask_a'].values.astype('U')
+    y_train = train_data['subtask_c'].values.astype('U')
 
     X_test = test_data['tweet'].values.astype('U')
-    y_test = test_data['subtask_a'].values.astype('U')
+    y_test = test_data['subtask_c'].values.astype('U')
 
     model.fit(X_train, y_train)
     labels = model.predict(X_test)
@@ -125,10 +125,10 @@ def BOW_Random_forest(train_data, test_data):
     print("BOW + Random forest")
     model = make_pipeline(CountVectorizer(ngram_range=(1, 1)), RandomForestClassifier())
     X_train = train_data['tweet'].values.astype('U')
-    y_train = train_data['subtask_a'].values.astype('U')
+    y_train = train_data['subtask_c'].values.astype('U')
 
     X_test = test_data['tweet'].values.astype('U')
-    y_test = test_data['subtask_a'].values.astype('U')
+    y_test = test_data['subtask_c'].values.astype('U')
 
     model.fit(X_train, y_train)
     labels = model.predict(X_test)
@@ -145,10 +145,10 @@ def BOW_Decision_Tree(train_data, test_data):
     print("BOW + Decsion Tree")
     model = make_pipeline(CountVectorizer(ngram_range=(1, 1)), DecisionTreeClassifier())
     X_train = train_data['tweet'].values.astype('U')
-    y_train = train_data['subtask_a'].values.astype('U')
+    y_train = train_data['subtask_c'].values.astype('U')
 
     X_test = test_data['tweet'].values.astype('U')
-    y_test = test_data['subtask_a'].values.astype('U')
+    y_test = test_data['subtask_c'].values.astype('U')
 
     model.fit(X_train, y_train)
     labels = model.predict(X_test)
@@ -165,10 +165,10 @@ def BOW_Multi_Naive_Bayes(train_data, test_data):
     print("BOW + Naive Bayes")
     model = make_pipeline(CountVectorizer(ngram_range=(1, 1)), MultinomialNB())
     X_train = train_data['tweet'].values.astype('U')
-    y_train = train_data['subtask_a'].values.astype('U')
+    y_train = train_data['subtask_c'].values.astype('U')
 
     X_test = test_data['tweet'].values.astype('U')
-    y_test = test_data['subtask_a'].values.astype('U')
+    y_test = test_data['subtask_c'].values.astype('U')
 
     model.fit(X_train, y_train)
     labels = model.predict(X_test)
@@ -186,10 +186,10 @@ def BOW_SVM(train_data, test_data):
     model = make_pipeline(CountVectorizer(ngram_range=(1,1)), SVC())
     # model = make_pipeline(TfidfVectorizer(), SVC())
     X_train = train_data['tweet'].values.astype('U')
-    y_train = train_data['subtask_a'].values.astype('U')
+    y_train = train_data['subtask_c'].values.astype('U')
 
     X_test = test_data['tweet'].values.astype('U')
-    y_test = test_data['subtask_a'].values.astype('U')
+    y_test = test_data['subtask_c'].values.astype('U')
 
     model.fit(X_train, y_train)
     labels = model.predict(X_test)
@@ -205,10 +205,10 @@ def LDA_SVM(train_data, test_data):
     print("LDA + SVM")
     model = make_pipeline(CountVectorizer(), LDA(), SVC())
     X_train = train_data['tweet'].values.astype('U')
-    y_train = train_data['subtask_a'].values.astype('U')
+    y_train = train_data['subtask_c'].values.astype('U')
 
     X_test = test_data['tweet'].values.astype('U')
-    y_test = test_data['subtask_a'].values.astype('U')
+    y_test = test_data['subtask_c'].values.astype('U')
 
     model.fit(X_train, y_train)
     labels = model.predict(X_test)
@@ -224,10 +224,10 @@ def LDA_Random_forest(train_data, test_data):
     print("LDA + Random forest")
     model = make_pipeline(CountVectorizer(), LDA(), RandomForestClassifier())
     X_train = train_data['tweet'].values.astype('U')
-    y_train = train_data['subtask_a'].values.astype('U')
+    y_train = train_data['subtask_c'].values.astype('U')
 
     X_test = test_data['tweet'].values.astype('U')
-    y_test = test_data['subtask_a'].values.astype('U')
+    y_test = test_data['subtask_c'].values.astype('U')
 
     model.fit(X_train, y_train)
     labels = model.predict(X_test)
@@ -244,10 +244,10 @@ def LDA_Multi_Naive_Bayes(train_data, test_data):
     print("LDA + MultiNomial Naive Bayes")
     model = make_pipeline(CountVectorizer(), LDA(), MultinomialNB())
     X_train = train_data['tweet'].values.astype('U')
-    y_train = train_data['subtask_a'].values.astype('U')
+    y_train = train_data['subtask_c'].values.astype('U')
 
     X_test = test_data['tweet'].values.astype('U')
-    y_test = test_data['subtask_a'].values.astype('U')
+    y_test = test_data['subtask_c'].values.astype('U')
 
     model.fit(X_train, y_train)
     labels = model.predict(X_test)
@@ -264,10 +264,10 @@ def LDA_Decision(train_data, test_data):
     print("LDA + Decision tree")
     model = make_pipeline(CountVectorizer(), LDA(), DecisionTreeClassifier())
     X_train = train_data['tweet'].values.astype('U')
-    y_train = train_data['subtask_a'].values.astype('U')
+    y_train = train_data['subtask_c'].values.astype('U')
 
     X_test = test_data['tweet'].values.astype('U')
-    y_test = test_data['subtask_a'].values.astype('U')
+    y_test = test_data['subtask_c'].values.astype('U')
 
     model.fit(X_train, y_train)
     labels = model.predict(X_test)
@@ -309,8 +309,8 @@ def main():
 
     train_data = read_data(train_filename)
     #word_clouds(train_data[['tweet']])
-    train_data = train_data[['tweet', 'subtask_a']]
-    train_data = train_data[train_data['subtask_a'].notna()]
+    train_data = train_data[['tweet', 'subtask_c']]
+    train_data = train_data[train_data['subtask_c'].notna()]
 
     # x_train, y_train, x_test, y_test = train_test_split(train_data['Tweet'],train_data['Class'],test_size=0.3,random_state=42)
     # # print(x_train)
@@ -321,14 +321,14 @@ def main():
     
     test_filename = './Data/MOLDV2_Test.csv'
     test_data = read_data(test_filename)
-    test_data = test_data[['tweet', 'subtask_a']]
-    test_data = test_data[test_data['subtask_a'].notna()]
+    test_data = test_data[['tweet', 'subtask_c']]
+    test_data = test_data[test_data['subtask_c'].notna()]
 
-    # print(len(train_data[train_data['subtask_a'] == 'offensive']))
-    # print(len(train_data[train_data['subtask_a'] == 'not offensive']))
+    # print(len(train_data[train_data['subtask_c'] == 'offensive']))
+    # print(len(train_data[train_data['subtask_c'] == 'not offensive']))
     #
-    # print(len(test_data[test_data['subtask_a'] == 'offensive']))
-    # print(len(test_data[test_data['subtask_a'] == 'not offensive']))
+    # print(len(test_data[test_data['subtask_c'] == 'offensive']))
+    # print(len(test_data[test_data['subtask_c'] == 'not offensive']))
     #
     # print(len(train_data))
     # print(len(test_data))
