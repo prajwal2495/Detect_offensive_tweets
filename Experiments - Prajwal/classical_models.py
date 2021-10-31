@@ -38,11 +38,11 @@ def tokenize(sentences):
 def TFIDF_Decision(train_data, test_data):
     print("TFIDF + Decision tree")
     model = make_pipeline(TfidfVectorizer(ngram_range=(1,1)), DecisionTreeClassifier())
-    X_train = train_data['tweet']
-    y_train = train_data['subtask_a']
+    X_train = train_data['tweet'].values.astype('U')
+    y_train = train_data['subtask_a'].values.astype('U')
 
-    X_test = test_data['tweet']
-    y_test = test_data['subtask_a']
+    X_test = test_data['tweet'].values.astype('U')
+    y_test = test_data['subtask_a'].values.astype('U')
     model.fit(X_train, y_train)
     labels = model.predict(X_test)
     print("Accuracy:", metrics.accuracy_score(y_test, labels) * 100)
@@ -57,11 +57,12 @@ def TFIDF_Decision(train_data, test_data):
 def TFIDF_Random_forest(train_data, test_data):
     print("TFIDF + Random forest")
     model = make_pipeline(TfidfVectorizer(ngram_range=(1,1)), RandomForestClassifier())
-    X_train = train_data['tweet']
-    y_train = train_data['subtask_a']
+    X_train = train_data['tweet'].values.astype('U')
+    y_train = train_data['subtask_a'].values.astype('U')
 
-    X_test = test_data['tweet']
-    y_test = test_data['subtask_a']
+    X_test = test_data['tweet'].values.astype('U')
+    y_test = test_data['subtask_a'].values.astype('U')
+
     model.fit(X_train, y_train)
     labels = model.predict(X_test)
     print("Accuracy:", metrics.accuracy_score(y_test, labels) * 100)
@@ -75,11 +76,12 @@ def TFIDF_Random_forest(train_data, test_data):
 def TFIDF_SVM(train_data, test_data):
     print("TFIDF + SVM")
     model = make_pipeline(TfidfVectorizer(ngram_range=(1,1)), SVC())
-    X_train = train_data['tweet']
-    y_train = train_data['subtask_a']
+    X_train = train_data['tweet'].values.astype('U')
+    y_train = train_data['subtask_a'].values.astype('U')
 
-    X_test = test_data['tweet']
-    y_test = test_data['subtask_a']
+    X_test = test_data['tweet'].values.astype('U')
+    y_test = test_data['subtask_a'].values.astype('U')
+
     model.fit(X_train, y_train)
     #AUC_ARRAY = []
     #alpha = [10 ** x for x in range(-5, 4)]
@@ -103,11 +105,12 @@ def TFIDF_SVM(train_data, test_data):
 def TFIDF_Multi_Naive_Bayes(train_data, test_data):
     print("TFIDF + MultiNomial Naive Bayes")
     model = make_pipeline(TfidfVectorizer(ngram_range=(1,1)), MultinomialNB())
-    X_train = train_data['tweet']
-    y_train = train_data['subtask_a']
+    X_train = train_data['tweet'].values.astype('U')
+    y_train = train_data['subtask_a'].values.astype('U')
 
-    X_test = test_data['tweet']
-    y_test = test_data['subtask_a']
+    X_test = test_data['tweet'].values.astype('U')
+    y_test = test_data['subtask_a'].values.astype('U')
+
     model.fit(X_train, y_train)
     labels = model.predict(X_test)
     print("Accuracy:", metrics.accuracy_score(y_test, labels) * 100)
@@ -121,11 +124,12 @@ def TFIDF_Multi_Naive_Bayes(train_data, test_data):
 def BOW_Random_forest(train_data, test_data):
     print("BOW + Random forest")
     model = make_pipeline(CountVectorizer(ngram_range=(1, 1)), RandomForestClassifier())
-    X_train = train_data['tweet']
-    y_train = train_data['subtask_a']
+    X_train = train_data['tweet'].values.astype('U')
+    y_train = train_data['subtask_a'].values.astype('U')
 
-    X_test = test_data['tweet']
-    y_test = test_data['subtask_a']
+    X_test = test_data['tweet'].values.astype('U')
+    y_test = test_data['subtask_a'].values.astype('U')
+
     model.fit(X_train, y_train)
     labels = model.predict(X_test)
     print("Accuracy:", metrics.accuracy_score(y_test, labels) * 100)
@@ -140,11 +144,12 @@ def BOW_Random_forest(train_data, test_data):
 def BOW_Decision_Tree(train_data, test_data):
     print("BOW + Decsion Tree")
     model = make_pipeline(CountVectorizer(ngram_range=(1, 1)), DecisionTreeClassifier())
-    X_train = train_data['tweet']
-    y_train = train_data['subtask_a']
+    X_train = train_data['tweet'].values.astype('U')
+    y_train = train_data['subtask_a'].values.astype('U')
 
-    X_test = test_data['tweet']
-    y_test = test_data['subtask_a']
+    X_test = test_data['tweet'].values.astype('U')
+    y_test = test_data['subtask_a'].values.astype('U')
+
     model.fit(X_train, y_train)
     labels = model.predict(X_test)
     print("Accuracy:", metrics.accuracy_score(y_test, labels) * 100)
@@ -159,11 +164,12 @@ def BOW_Decision_Tree(train_data, test_data):
 def BOW_Multi_Naive_Bayes(train_data, test_data):
     print("BOW + Naive Bayes")
     model = make_pipeline(CountVectorizer(ngram_range=(1, 1)), MultinomialNB())
-    X_train = train_data['tweet']
-    y_train = train_data['subtask_a']
+    X_train = train_data['tweet'].values.astype('U')
+    y_train = train_data['subtask_a'].values.astype('U')
 
-    X_test = test_data['tweet']
-    y_test = test_data['subtask_a']
+    X_test = test_data['tweet'].values.astype('U')
+    y_test = test_data['subtask_a'].values.astype('U')
+
     model.fit(X_train, y_train)
     labels = model.predict(X_test)
     print("Accuracy:", metrics.accuracy_score(y_test, labels) * 100)
@@ -179,11 +185,12 @@ def BOW_SVM(train_data, test_data):
     print("BOW + SVM")
     model = make_pipeline(CountVectorizer(ngram_range=(1,1)), SVC())
     # model = make_pipeline(TfidfVectorizer(), SVC())
-    X_train = train_data['tweet']
-    y_train = train_data['subtask_a']
+    X_train = train_data['tweet'].values.astype('U')
+    y_train = train_data['subtask_a'].values.astype('U')
 
-    X_test = test_data['tweet']
-    y_test = test_data['subtask_a']
+    X_test = test_data['tweet'].values.astype('U')
+    y_test = test_data['subtask_a'].values.astype('U')
+
     model.fit(X_train, y_train)
     labels = model.predict(X_test)
     print("Accuracy:", metrics.accuracy_score(y_test, labels) * 100)
@@ -197,11 +204,12 @@ def BOW_SVM(train_data, test_data):
 def LDA_SVM(train_data, test_data):
     print("LDA + SVM")
     model = make_pipeline(CountVectorizer(), LDA(), SVC())
-    X_train = train_data['tweet']
-    y_train = train_data['subtask_a']
+    X_train = train_data['tweet'].values.astype('U')
+    y_train = train_data['subtask_a'].values.astype('U')
 
-    X_test = test_data['tweet']
-    y_test = test_data['subtask_a']
+    X_test = test_data['tweet'].values.astype('U')
+    y_test = test_data['subtask_a'].values.astype('U')
+
     model.fit(X_train, y_train)
     labels = model.predict(X_test)
     print("Accuracy:", metrics.accuracy_score(y_test, labels) * 100)
@@ -215,11 +223,12 @@ def LDA_SVM(train_data, test_data):
 def LDA_Random_forest(train_data, test_data):
     print("LDA + Random forest")
     model = make_pipeline(CountVectorizer(), LDA(), RandomForestClassifier())
-    X_train = train_data['tweet']
-    y_train = train_data['subtask_a']
+    X_train = train_data['tweet'].values.astype('U')
+    y_train = train_data['subtask_a'].values.astype('U')
 
-    X_test = test_data['tweet']
-    y_test = test_data['subtask_a']
+    X_test = test_data['tweet'].values.astype('U')
+    y_test = test_data['subtask_a'].values.astype('U')
+
     model.fit(X_train, y_train)
     labels = model.predict(X_test)
     print("Accuracy:", metrics.accuracy_score(y_test, labels) * 100)
@@ -234,11 +243,12 @@ def LDA_Random_forest(train_data, test_data):
 def LDA_Multi_Naive_Bayes(train_data, test_data):
     print("LDA + MultiNomial Naive Bayes")
     model = make_pipeline(CountVectorizer(), LDA(), MultinomialNB())
-    X_train = train_data['tweet']
-    y_train = train_data['subtask_a']
+    X_train = train_data['tweet'].values.astype('U')
+    y_train = train_data['subtask_a'].values.astype('U')
 
-    X_test = test_data['tweet']
-    y_test = test_data['subtask_a']
+    X_test = test_data['tweet'].values.astype('U')
+    y_test = test_data['subtask_a'].values.astype('U')
+
     model.fit(X_train, y_train)
     labels = model.predict(X_test)
     print("Accuracy:", metrics.accuracy_score(y_test, labels) * 100)
@@ -253,11 +263,12 @@ def LDA_Multi_Naive_Bayes(train_data, test_data):
 def LDA_Decision(train_data, test_data):
     print("LDA + Decision tree")
     model = make_pipeline(CountVectorizer(), LDA(), DecisionTreeClassifier())
-    X_train = train_data['tweet']
-    y_train = train_data['subtask_a']
+    X_train = train_data['tweet'].values.astype('U')
+    y_train = train_data['subtask_a'].values.astype('U')
 
-    X_test = test_data['tweet']
-    y_test = test_data['subtask_a']
+    X_test = test_data['tweet'].values.astype('U')
+    y_test = test_data['subtask_a'].values.astype('U')
+
     model.fit(X_train, y_train)
     labels = model.predict(X_test)
     print("Accuracy:", metrics.accuracy_score(y_test, labels) * 100)
@@ -294,7 +305,7 @@ def word_clouds(tweets):
 
 
 def main():
-    train_filename = 'Data/OLD_DATA/MOLDV2_Train.csv'
+    train_filename = 'Data/MOLDV2_Train.csv'
 
     train_data = read_data(train_filename)
     #word_clouds(train_data[['tweet']])
