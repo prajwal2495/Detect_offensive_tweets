@@ -1,0 +1,4 @@
+Class,PAC,SGD,KNN,GradientBoost,MLP
+GRP,96,88,83,91,87
+OTH,94,1,0,94,1
+NAN ,0,0,0,0,0
