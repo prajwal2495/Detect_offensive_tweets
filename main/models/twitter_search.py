@@ -72,7 +72,7 @@ def tweet_search(api, query, max_tweets, max_id, since_id, geocode):
     return searched_tweets, max_id
 
 
-def get_tweet_id(api, date='', days_ago=9, query='a'):
+def get_tweet_id(api, date='', days_ago=100, query='a'):
     ''' Function that gets the ID of a tweet. This ID can then be
         used as a 'starting point' from which to search. The query is
         required and has been set to a commonly used word by default.
@@ -118,7 +118,7 @@ def main():
         dates and search phrase can be changed below. '''
 
     ''' search variables: '''
-    search_phrases = ['इच्छित','शब्दलेखन','कायदा','चित्र','आई','भाग','पुष्कळ']
+    search_phrases = ['म्हणतो', 'म्हनतो', 'बघत', 'सरवात']
     time_limit = 1.5  # runtime limit in hours
     max_tweets = 1000  # number of tweets per search (will be
     # iterated over) - maximum is 1000
