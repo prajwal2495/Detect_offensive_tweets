@@ -58,11 +58,11 @@ def train_test_TFIDF(train_data, test_data, model):
 def train_test_LDA(train_data, test_data, model):
     print("TFIDF + ", model)
     model = make_pipeline(CountVectorizer(), LDA(), model)
-    X_train = train_data['tweet']
-    y_train = train_data['subtask_a']
+    X_train = train_data['tweet'].values.astype('U')
+    y_train = train_data['subtask_a'].values.astype('U')
 
-    X_test = test_data['tweet']
-    y_test = test_data['subtask_a']
+    X_test = test_data['tweet'].values.astype('U')
+    y_test = test_data['subtask_a'].values.astype('U')
     model.fit(X_train, y_train)
     labels = model.predict(X_test)
     print("Accuracy:", metrics.accuracy_score(y_test, labels) * 100)
@@ -75,11 +75,11 @@ def train_test_LDA(train_data, test_data, model):
 def train_test_BOW(train_data, test_data, model):
     print("TFIDF + ", model)
     model = make_pipeline(CountVectorizer(ngram_range=(1, 1)), model)
-    X_train = train_data['tweet']
-    y_train = train_data['subtask_a']
+    X_train = train_data['tweet'].values.astype('U')
+    y_train = train_data['subtask_a'].values.astype('U')
 
-    X_test = test_data['tweet']
-    y_test = test_data['subtask_a']
+    X_test = test_data['tweet'].values.astype('U')
+    y_test = test_data['subtask_a'].values.astype('U')
     model.fit(X_train, y_train)
     labels = model.predict(X_test)
     print("Accuracy:", metrics.accuracy_score(y_test, labels) * 100)
@@ -246,7 +246,9 @@ def main():
     test_data = test_data[test_data['subtask_a'].notna()]
 
     TFIDF_MNB = MultinomialNB()
+    BOW_SVC = SVC()
     train_test_TFIDF(train_data, test_data, TFIDF_MNB)
+    train_test_BOW(train_data, test_data, BOW_SVC)
 
 
 if __name__ == '__main__':
