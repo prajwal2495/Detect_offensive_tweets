@@ -54,7 +54,7 @@ def tweet_search(api, query, max_tweets, max_id, since_id, geocode):
     while len(searched_tweets) < max_tweets:
         remaining_tweets = max_tweets - len(searched_tweets)
         try:
-            new_tweets = api.search(q=query, count=remaining_tweets,
+            new_tweets = api.search_tweets(q=query, count=remaining_tweets,
                                     since_id=str(since_id),
                                     max_id=str(max_id - 1))
             #                                    geocode=geocode)
@@ -83,13 +83,13 @@ def get_tweet_id(api, date='', days_ago=9, query='a'):
         # return an ID from the start of the given day
         td = date + dt.timedelta(days=1)
         tweet_date = '{0}-{1:0>2}-{2:0>2}'.format(td.year, td.month, td.day)
-        tweet = api.search(q=query, count=1, until=tweet_date, lang='mr')
+        tweet = api.search_tweets(q=query, count=1, until=tweet_date, lang='mr')
     else:
         # return an ID from __ days ago
         td = dt.datetime.now() - dt.timedelta(days=days_ago)
         tweet_date = '{0}-{1:0>2}-{2:0>2}'.format(td.year, td.month, td.day)
         # get list of up to 10 tweets
-        tweet = api.search(q=query, count=5, until=tweet_date, lang='mr')
+        tweet = api.search_tweets(q=query, count=5, until=tweet_date, lang='mr')
         print('search limit (start/stop):', tweet[0].created_at)
         # return the id of the first tweet in the list
         return tweet[0].id
@@ -109,7 +109,7 @@ def write_to_csv(tweets, filename):
     csv_file = open(filename,'a')
     csvWriter = csv.writer(csv_file)
     for i in range(len(tweets)):
-        csvWriter.writerow([tweets[i].text])
+        csvWriter.writerow([tweets[i].text.encode('utf-8')])
 
 
 def main():
