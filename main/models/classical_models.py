@@ -238,7 +238,7 @@ def main():
     train_filename = './Data/MOLDV2_Train.csv'
 
     train_data = read_data(train_filename)
-    word_clouds(train_data[['tweet']])
+    #6987.88word_clouds(train_data[['tweet']])
     train_data = train_data[['tweet', 'subtask_a']]
     train_data = train_data[train_data['subtask_a'].notna()]
 
@@ -248,9 +248,25 @@ def main():
     test_data = test_data[test_data['subtask_a'].notna()]
 
     TFIDF_MNB = MultinomialNB()
+    TFIDF_SVC = SVC()
+    TFIDF_RF = RandomForestClassifier()
+    TFIDF_DT = DecisionTreeClassifier()
+
+    BOW_MNB = MultinomialNB()
     BOW_SVC = SVC()
+    BOW_RF = RandomForestClassifier()
+    BOW_DT = DecisionTreeClassifier()
+
+    LDA_MNB = MultinomialNB()
+    LDA_SVC = SVC()
+    LDA_RF = RandomForestClassifier()
+    LDA_DT = DecisionTreeClassifier()
+
     train_test_TFIDF(train_data, test_data, TFIDF_MNB)
-    train_test_BOW(train_data, test_data, BOW_SVC)
+    train_test_BOW(train_data, test_data, TFIDF_SVC)
+    train_test_TFIDF(train_data, test_data, TFIDF_RF)
+    train_test_BOW(train_data, test_data, TFIDF_DT)
+
 
 
 if __name__ == '__main__':
