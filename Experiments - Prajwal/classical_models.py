@@ -238,18 +238,18 @@ def main():
 
     train_data = read_data(train_filename)
     word_clouds(train_data[['tweet']].values.astype('U'))
-    # train_data = train_data[['tweet', 'subtask_a']]
-    # train_data = train_data[train_data['subtask_a'].notna()]
-    #
-    # test_filename = './Data/MOLDV2_Test.csv'
-    # test_data = read_data(test_filename)
-    # test_data = test_data[['tweet', 'subtask_a']]
-    # test_data = test_data[test_data['subtask_a'].notna()]
-    #
-    # TFIDF_MNB = MultinomialNB()
-    # BOW_SVC = SVC()
-    # train_test_TFIDF(train_data, test_data, TFIDF_MNB)
-    # train_test_BOW(train_data, test_data, BOW_SVC)
+    train_data = train_data[['tweet', 'subtask_a']]
+    train_data = train_data[train_data['subtask_a'].notna()]
+
+    test_filename = './Data/MOLDV2_Test.csv'
+    test_data = read_data(test_filename)
+    test_data = test_data[['tweet', 'subtask_a']]
+    test_data = test_data[test_data['subtask_a'].notna()]
+
+    TFIDF_MNB = MultinomialNB()
+    BOW_SVC = SVC()
+    train_test_TFIDF(train_data, test_data, TFIDF_MNB)
+    train_test_BOW(train_data, test_data, BOW_SVC)
 
 
 if __name__ == '__main__':
