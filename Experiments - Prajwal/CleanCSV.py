@@ -32,6 +32,10 @@ def clean_text(row, options):
 
     if options['remove_specials']:
         row = re.sub('[+,-,_,=,/,<,>,!,#,$,%,^,&,*,\",:,;,.,' ',\t,\r,\n,\',|]','',row)
+
+    if options['remove_Quotes']:
+        row = re.sub("'","",row)
+
     return row
 
 clean_config = {
@@ -44,7 +48,8 @@ clean_config = {
     'add_USER_tag': True,
     'remove_newline':True,
     'remove_tab':True,
-    'strip_spaces':True
+    'strip_spaces':True,
+    'remove_Quotes':True
     }
 
 

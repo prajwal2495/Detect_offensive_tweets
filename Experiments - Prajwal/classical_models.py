@@ -217,7 +217,7 @@ def word_clouds(tweets):
     for tweet in tweets:
         # comment_words += tweet + " "
         for word in str(tweet).split(" "):
-            if word in map_of_words:
+            if word in map_of_words and word != "" :
                 map_of_words[word] += 1
             else:
                 map_of_words[word] = 1
@@ -225,7 +225,7 @@ def word_clouds(tweets):
     map_of_words.sort(reverse=True)  # natively sort tuples by first element
     i = 0
     for v, k in map_of_words:
-        if i == 5:
+        if i == 20:
             break
         i += 1
         print ("%s: %d" % (k, v))
@@ -238,18 +238,18 @@ def main():
 
     train_data = read_data(train_filename)
     word_clouds(train_data[['tweet']].values.astype('U'))
-    train_data = train_data[['tweet', 'subtask_a']]
-    train_data = train_data[train_data['subtask_a'].notna()]
-
-    test_filename = './Data/MOLDV2_Test.csv'
-    test_data = read_data(test_filename)
-    test_data = test_data[['tweet', 'subtask_a']]
-    test_data = test_data[test_data['subtask_a'].notna()]
-
-    TFIDF_MNB = MultinomialNB()
-    BOW_SVC = SVC()
-    train_test_TFIDF(train_data, test_data, TFIDF_MNB)
-    train_test_BOW(train_data, test_data, BOW_SVC)
+    # train_data = train_data[['tweet', 'subtask_a']]
+    # train_data = train_data[train_data['subtask_a'].notna()]
+    #
+    # test_filename = './Data/MOLDV2_Test.csv'
+    # test_data = read_data(test_filename)
+    # test_data = test_data[['tweet', 'subtask_a']]
+    # test_data = test_data[test_data['subtask_a'].notna()]
+    #
+    # TFIDF_MNB = MultinomialNB()
+    # BOW_SVC = SVC()
+    # train_test_TFIDF(train_data, test_data, TFIDF_MNB)
+    # train_test_BOW(train_data, test_data, BOW_SVC)
 
 
 if __name__ == '__main__':
