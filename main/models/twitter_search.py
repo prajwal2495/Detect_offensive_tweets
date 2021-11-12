@@ -67,12 +67,12 @@ def tweet_search(api, query, max_tweets, max_id, since_id, geocode):
         except tweepy.TweepError:
             print('exception raised, waiting 15 minutes')
             print('(until:', dt.datetime.now() + dt.timedelta(minutes=15), ')')
-            time.sleep(15 * 60)
+            time.sleep(5 * 60)
             break  # stop the loop
     return searched_tweets, max_id
 
 
-def get_tweet_id(api, date='', days_ago=9, query='a'):
+def get_tweet_id(api, date='', days_ago=100, query='a'):
     ''' Function that gets the ID of a tweet. This ID can then be
         used as a 'starting point' from which to search. The query is
         required and has been set to a commonly used word by default.
@@ -118,7 +118,7 @@ def main():
         dates and search phrase can be changed below. '''
 
     ''' search variables: '''
-    search_phrases = ['दळभद्री']
+    search_phrases = ['म्हणतो', 'म्हनतो', 'बघत', 'सरवात']
     time_limit = 1.5  # runtime limit in hours
     max_tweets = 1000  # number of tweets per search (will be
     # iterated over) - maximum is 1000
