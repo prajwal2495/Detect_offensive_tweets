@@ -211,45 +211,45 @@ def train_test_BOW(train_data, test_data, model):
 #     print("\n\n")
 #
 #
-# def word_clouds(tweets):
-#     comment_words = ""
-#     map_of_words = {}
-#     for tweet in tweets['tweet']:
-#         # comment_words += tweet + " "
-#         for word in tweet.split():
-#             if word in map_of_words:
-#                 map_of_words[word] += 1
-#             else:
-#                 map_of_words[word] = 1
-#     map_of_words = [(v, k) for k, v in map_of_words.items()]
-#     map_of_words.sort(reverse=True)  # natively sort tuples by first element
-#     i = 0
-#     for v, k in map_of_words:
-#         if i == 5:
-#             break
-#         i += 1
-#         print ("%s: %d" % (k, v))
-#
-#     print()
+def word_clouds(tweets):
+    comment_words = ""
+    map_of_words = {}
+    for tweet in tweets:
+        # comment_words += tweet + " "
+        for word in str(tweet).split(" "):
+            if word in map_of_words:
+                map_of_words[word] += 1
+            else:
+                map_of_words[word] = 1
+    map_of_words = [(v, k) for k, v in map_of_words.items()]
+    map_of_words.sort(reverse=True)  # natively sort tuples by first element
+    i = 0
+    for v, k in map_of_words:
+        if i == 5:
+            break
+        i += 1
+        print ("%s: %d" % (k, v))
+
+    print()
 
 
 def main():
     train_filename = './Data/MOLDV2_Train.csv'
 
     train_data = read_data(train_filename)
-    # word_clouds(train_data[['tweet']])
-    train_data = train_data[['tweet', 'subtask_a']]
-    train_data = train_data[train_data['subtask_a'].notna()]
-
-    test_filename = './Data/MOLDV2_Test.csv'
-    test_data = read_data(test_filename)
-    test_data = test_data[['tweet', 'subtask_a']]
-    test_data = test_data[test_data['subtask_a'].notna()]
-
-    TFIDF_MNB = MultinomialNB()
-    BOW_SVC = SVC()
-    train_test_TFIDF(train_data, test_data, TFIDF_MNB)
-    train_test_BOW(train_data, test_data, BOW_SVC)
+    word_clouds(train_data[['tweet']].values.astype('U'))
+    # train_data = train_data[['tweet', 'subtask_a']]
+    # train_data = train_data[train_data['subtask_a'].notna()]
+    #
+    # test_filename = './Data/MOLDV2_Test.csv'
+    # test_data = read_data(test_filename)
+    # test_data = test_data[['tweet', 'subtask_a']]
+    # test_data = test_data[test_data['subtask_a'].notna()]
+    #
+    # TFIDF_MNB = MultinomialNB()
+    # BOW_SVC = SVC()
+    # train_test_TFIDF(train_data, test_data, TFIDF_MNB)
+    # train_test_BOW(train_data, test_data, BOW_SVC)
 
 
 if __name__ == '__main__':
