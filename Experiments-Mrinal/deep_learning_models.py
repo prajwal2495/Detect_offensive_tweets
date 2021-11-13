@@ -17,11 +17,11 @@ def read_data(filename):
 def TFIDF_Multi_Layer_Perceptron(train_data, test_data):
     print("TFIDF + MultiLayer Perceptron")
     model = make_pipeline(TfidfVectorizer(),MLPClassifier(random_state=1, max_iter=100, learning_rate_init=0.001, activation='logistic'))
-    X_train = train_data['Tweet']
-    y_train = train_data['Class']
+    X_train = train_data['tweet'].values.astype('U')
+    y_train = train_data['subtask_a'].values.astype('U')
 
-    X_test = test_data['Tweet']
-    y_test = test_data['Class']
+    X_test = test_data['tweet'].values.astype('U')
+    y_test = test_data['subtask_a'].values.astype('U')
 
     model.fit(X_train, y_train)
     labels = model.predict(X_test)
@@ -41,15 +41,15 @@ def TFIDF_Multi_Layer_Perceptron(train_data, test_data):
 
 
 def main():
-    train_filename = './Data/Marathi_Train_level_C.csv'
+    train_filename = './Data/MOLDV2_Train.csv'
     train_data = read_data(train_filename)
-    train_data = train_data[['Tweet', 'Class']]
-    train_data = train_data[train_data['Class'].notna()]
+    train_data = train_data[['tweet', 'subtask_a']]
+    train_data = train_data[train_data['subtask_a'].notna()]
 
-    test_filename = './Data/Marathi_Test_Level_C.csv'
+    test_filename = './Data/MOLDV2_Test.csv'
     test_data = read_data(test_filename)
-    test_data = test_data[['Tweet', 'Class']]
-    test_data = test_data[test_data['Class'].notna()]
+    test_data = test_data[['tweet', 'subtask_a']]
+    test_data = test_data[test_data['subtask_a'].notna()]
 
     TFIDF_Multi_Layer_Perceptron(train_data, test_data)
 
