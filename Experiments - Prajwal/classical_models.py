@@ -8,10 +8,11 @@ from sklearn.ensemble import RandomForestClassifier
 from sklearn.feature_extraction.text import TfidfVectorizer, CountVectorizer
 from sklearn.metrics import confusion_matrix, classification_report, roc_curve,auc,roc_auc_score
 from sklearn.calibration import CalibratedClassifierCV
-import matplotlib.pyplot as plt
+#import matplotlib.pyplot as plt
 from sklearn.naive_bayes import MultinomialNB
 from sklearn.pipeline import make_pipeline
 from sklearn.tree import DecisionTreeClassifier
+from sklearn.neighbors import KNeighborsClassifier
 from sklearn.decomposition import LatentDirichletAllocation as LDA
 
 warnings.filterwarnings("ignore")
@@ -34,6 +35,23 @@ def tokenize(sentences):
         words.extend(w)
         words = sorted(list(set(words)))
     return words
+def TFIDF_KNN(train_data, test_data):
+    print("TFIDF + KNN")
+    model = make_pipeline(TfidfVectorizer(ngram_range=(1, 1)), KNeighborsClassifier(n_neighbors=5))
+    X_train = train_data['tweet']
+    y_train = train_data['subtask_a']
+
+    X_test = test_data['tweet']
+    y_test = test_data['subtask_a']
+    model.fit(X_train, y_train)
+    labels = model.predict(X_test)
+    print("Accuracy:", metrics.accuracy_score(y_test, labels) * 100)
+    # takes a lot of time to generate 10 trees and find accuracy
+    # print(cross_val_score(model, X, y, cv=10))
+    cm = confusion_matrix(y_test, labels)#, train_data['Class'].unique())
+    print("Confusion matrix\n", cm)
+    print(classification_report(y_test, labels, digits = 4))
+    print("\n\n")
 
 def TFIDF_Decision(train_data, test_data):
     print("TFIDF + Decision tree")
@@ -321,21 +339,21 @@ def main():
     #
     # print(len(train_data))
     # print(len(test_data))
-
-    TFIDF_Decision(train_data, test_data)
-    TFIDF_Multi_Naive_Bayes(train_data, test_data)
-    TFIDF_Random_forest(train_data, test_data)
-    TFIDF_SVM(train_data, test_data)
-
-    BOW_Decision_Tree(train_data, test_data)
-    BOW_Multi_Naive_Bayes(train_data, test_data)
-    BOW_Random_forest(train_data, test_data)
-    BOW_SVM(train_data, test_data)
-
-    LDA_Decision(train_data, test_data)
-    LDA_Multi_Naive_Bayes(train_data, test_data)
-    LDA_Random_forest(train_data, test_data)
-    LDA_SVM(train_data, test_data)
+    TFIDF_KNN(train_data, test_data)
+    # TFIDF_Decision(train_data, test_data)
+    # TFIDF_Multi_Naive_Bayes(train_data, test_data)
+    # TFIDF_Random_forest(train_data, test_data)
+    # TFIDF_SVM(train_data, test_data)
+    #
+    # BOW_Decision_Tree(train_data, test_data)
+    # BOW_Multi_Naive_Bayes(train_data, test_data)
+    # BOW_Random_forest(train_data, test_data)
+    # BOW_SVM(train_data, test_data)
+    #
+    # LDA_Decision(train_data, test_data)
+    # LDA_Multi_Naive_Bayes(train_data, test_data)
+    # LDA_Random_forest(train_data, test_data)
+    # LDA_SVM(train_data, test_data)
 
 
 if __name__ == '__main__':

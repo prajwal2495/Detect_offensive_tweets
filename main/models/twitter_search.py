@@ -109,7 +109,7 @@ def write_to_csv(tweets, filename):
     csv_file = open(filename,'a')
     csvWriter = csv.writer(csv_file)
     for i in range(len(tweets)):
-        csvWriter.writerow([tweets[i].text])
+        csvWriter.writerow([tweets[i].text.encode('utf-8')])
 
 
 def main():

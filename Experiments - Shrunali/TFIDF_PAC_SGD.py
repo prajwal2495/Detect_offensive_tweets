@@ -39,7 +39,7 @@ def TFIDF_PassiveAgressive(train_data, test_data):
     print("Accuracy:", metrics.accuracy_score(y_test, labels) * 100)
     # takes a lot of time to generate 10 trees and find accuracy
     # print(cross_val_score(model, X, y, cv=10))
-    cm = confusion_matrix(y_test, labels, train_data['Class'].unique())
+    cm = confusion_matrix(y_test, labels)
     print("Confusion matrix", cm)
     print(classification_report(y_test, labels, digits = 4))
     print("\n\n")
@@ -57,19 +57,21 @@ def TFIDF_SGDClassifer(train_data, test_data):
     print("Accuracy:", metrics.accuracy_score(y_test, labels) * 100)
     # takes a lot of time to generate 10 trees and find accuracy
     # print(cross_val_score(model, X, y, cv=10))
-    cm = confusion_matrix(y_test, labels, train_data['Class'].unique())
+    cm = confusion_matrix(y_test, labels)
     print("Confusion matrix", cm)
     print(classification_report(y_test, labels, digits = 4))
     print("\n\n")
 
 def main():
-    train_filename = './Dataset/Marathi_Train.csv'
+    train_filename = './Data/Marathi_Train_level_C.csv'
     train_data = read_data(train_filename)
     train_data = train_data[['Tweet', 'Class']]
+    train_data = train_data[train_data['Class'].notna()]
 
-    test_filename = './Dataset/Marathi_Test.csv'
+    test_filename = './Data/Marathi_Test_level_C.csv'
     test_data = read_data(test_filename)
     test_data = test_data[['Tweet', 'Class']]
+    test_data = test_data[test_data['Class'].notna()]
 
     TFIDF_PassiveAgressive(train_data, test_data)
     TFIDF_SGDClassifer(train_data, test_data)
