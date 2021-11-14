@@ -143,10 +143,10 @@ def main():
     LDA_RF = RandomForestClassifier()
     LDA_DT = DecisionTreeClassifier()
 
-    train_test_BOW(train_data, test_data, BOW_MNB)
-    train_test_BOW(train_data, test_data, BOW_SVC)
-    train_test_BOW(train_data, test_data, BOW_RF)
-    train_test_BOW(train_data, test_data, BOW_DT)
+    train_test_LDA(train_data, test_data, LDA_MNB)
+    train_test_LDA(train_data, test_data, LDA_SVC)
+    train_test_LDA(train_data, test_data, LDA_RF)
+    train_test_LDA(train_data, test_data, LDA_DT)
 
 
 
