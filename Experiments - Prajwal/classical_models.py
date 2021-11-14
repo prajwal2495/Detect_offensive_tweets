@@ -42,10 +42,10 @@ def train_test_TFIDF(train_data, test_data, model):
     print("TFIDF + ", model)
     model = make_pipeline(TfidfVectorizer(ngram_range=(1, 1)), model)
     X_train = train_data['tweet'].values.astype('U')
-    y_train = train_data['subtask_b'].values.astype('U')
+    y_train = train_data['subtask_c'].values.astype('U')
 
     X_test = test_data['tweet'].values.astype('U')
-    y_test = test_data['subtask_b'].values.astype('U')
+    y_test = test_data['subtask_c'].values.astype('U')
     model.fit(X_train, y_train)
 
     labels = model.predict(X_test)
@@ -62,10 +62,10 @@ def train_test_LDA(train_data, test_data, model):
     print("TFIDF + ", model)
     model = make_pipeline(CountVectorizer(), LDA(), model)
     X_train = train_data['tweet'].values.astype('U')
-    y_train = train_data['subtask_b'].values.astype('U')
+    y_train = train_data['subtask_c'].values.astype('U')
 
     X_test = test_data['tweet'].values.astype('U')
-    y_test = test_data['subtask_b'].values.astype('U')
+    y_test = test_data['subtask_c'].values.astype('U')
     model.fit(X_train, y_train)
     labels = model.predict(X_test)
     print("Accuracy:", metrics.accuracy_score(y_test, labels) * 100)
@@ -80,10 +80,10 @@ def train_test_BOW(train_data, test_data, model):
     print("TFIDF + ", model)
     model = make_pipeline(CountVectorizer(ngram_range=(1, 1)), model)
     X_train = train_data['tweet'].values.astype('U')
-    y_train = train_data['subtask_b'].values.astype('U')
+    y_train = train_data['subtask_c'].values.astype('U')
 
     X_test = test_data['tweet'].values.astype('U')
-    y_test = test_data['subtask_b'].values.astype('U')
+    y_test = test_data['subtask_c'].values.astype('U')
     model.fit(X_train, y_train)
     labels = model.predict(X_test)
     print("Accuracy:", metrics.accuracy_score(y_test, labels) * 100)
@@ -120,13 +120,13 @@ def main():
 
     train_data = read_data(train_filename)
     #word_clouds(train_data[['tweet']])
-    train_data = train_data[['tweet', 'subtask_b']]
-    train_data = train_data[train_data['subtask_b'].notna()]
+    train_data = train_data[['tweet', 'subtask_c']]
+    train_data = train_data[train_data['subtask_c'].notna()]
 
     test_filename = './Data/MOLDV2_Test.csv'
     test_data = read_data(test_filename)
-    test_data = test_data[['tweet', 'subtask_b']]
-    test_data = test_data[test_data['subtask_b'].notna()]
+    test_data = test_data[['tweet', 'subtask_c']]
+    test_data = test_data[test_data['subtask_c'].notna()]
 
     TFIDF_MNB = MultinomialNB()
     TFIDF_SVC = SVC()
@@ -143,10 +143,10 @@ def main():
     LDA_RF = RandomForestClassifier()
     LDA_DT = DecisionTreeClassifier()
 
-    train_test_LDA(train_data, test_data, LDA_MNB)
-    train_test_LDA(train_data, test_data, LDA_SVC)
-    train_test_LDA(train_data, test_data, LDA_RF)
-    train_test_LDA(train_data, test_data, LDA_DT)
+    train_test_LDA(train_data, test_data, TFIDF_MNB)
+    train_test_LDA(train_data, test_data, TFIDF_SVC)
+    train_test_LDA(train_data, test_data, TFIDF_RF)
+    train_test_LDA(train_data, test_data, TFIDF_DT)
 
 
 
