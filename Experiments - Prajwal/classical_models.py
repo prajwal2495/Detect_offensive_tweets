@@ -78,7 +78,7 @@ def train_test_LDA(train_data, test_data, model):
 
 def train_test_BOW(train_data, test_data, model):
     print("TFIDF + ", model)
-    model = make_pipeline(CountVectorizer(ngram_range=(1, 1)), model)
+    model = make_pipeline(CountVectorizer(ngram_range=(1, 2)), model)
     X_train = train_data['tweet'].values.astype('U')
     y_train = train_data['subtask_c'].values.astype('U')
 
@@ -128,25 +128,15 @@ def main():
     test_data = test_data[['tweet', 'subtask_c']]
     test_data = test_data[test_data['subtask_c'].notna()]
 
-    TFIDF_MNB = MultinomialNB()
-    TFIDF_SVC = SVC()
-    TFIDF_RF = RandomForestClassifier()
-    TFIDF_DT = DecisionTreeClassifier()
+    MNB = MultinomialNB()
+    SVC_obj = SVC()
+    RF = RandomForestClassifier()
+    DT = DecisionTreeClassifier()
 
-    BOW_MNB = MultinomialNB()
-    BOW_SVC = SVC()
-    BOW_RF = RandomForestClassifier()
-    BOW_DT = DecisionTreeClassifier()
-
-    LDA_MNB = MultinomialNB()
-    LDA_SVC = SVC()
-    LDA_RF = RandomForestClassifier()
-    LDA_DT = DecisionTreeClassifier()
-
-    train_test_LDA(train_data, test_data, LDA_MNB)
-    train_test_LDA(train_data, test_data, LDA_SVC)
-    train_test_LDA(train_data, test_data, LDA_RF)
-    train_test_LDA(train_data, test_data, LDA_DT)
+    train_test_TFIDF(train_data, test_data, MNB)
+    train_test_TFIDF(train_data, test_data, SVC_obj)
+    train_test_TFIDF(train_data, test_data, RF)
+    train_test_TFIDF(train_data, test_data, DT)
 
 
 
