@@ -32,6 +32,10 @@ def clean_text(row, options):
 
     if options['remove_specials']:
         row = re.sub('[+,-,_,=,/,<,>,!,#,$,%,^,&,*,\",:,;,.,' ',\t,\r,\n,\',|]','',row)
+
+    if options['remove_Quotes']:
+        row = re.sub("'","",row)
+
     return row
 
 clean_config = {
@@ -44,7 +48,8 @@ clean_config = {
     'add_USER_tag': True,
     'remove_newline':True,
     'remove_tab':True,
-    'strip_spaces':True
+    'strip_spaces':True,
+    'remove_Quotes':True
     }
 
 
@@ -63,7 +68,7 @@ def demoji(text):
 
 def main():
     # csv file
-    input_file = 'Data/आईची_2021-10-24_to_2021-10-29.csv'
+    input_file = 'Data/Final - MOLDV2_Train.csv'
 
     dataset = pd.read_csv(input_file)
 
@@ -88,7 +93,7 @@ def main():
     dataset_df['tweet'] = dataset_df['tweet'].apply( lambda x : demoji(x))
 
     # convert df to csv
-    dataset_df.to_csv('./Data/आईची_clean.csv',index = False)
+    dataset_df.to_csv('./Data/Final_cleaned.csv',index = False)
 
 if __name__ == "__main__":
     main()
