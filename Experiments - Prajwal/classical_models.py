@@ -7,7 +7,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.feature_extraction.text import TfidfVectorizer, CountVectorizer
 from sklearn.metrics import confusion_matrix, classification_report, roc_curve, auc, roc_auc_score
-from sklearn.model_selection import RandomizedSearchCV
+from sklearn.model_selection import RandomizedSearchCV, RepeatedStratifiedKFold
 import matplotlib.pyplot as plt
 from sklearn.naive_bayes import MultinomialNB
 from sklearn.pipeline import make_pipeline
@@ -129,9 +129,7 @@ def main():
     test_data = test_data[['tweet', 'subtask_a']]
     test_data = test_data[test_data['subtask_a'].notna()]
 
-    #MNB = MultinomialNB()
-    #SVC_obj = SVC()
-    #DT = DecisionTreeClassifier()
+
     RF = RandomForestClassifier(random_state=42)
     # Number of trees in random forest
     n_estimators = [int(x) for x in np.linspace(start=200, stop=2000, num=10)]
@@ -159,11 +157,23 @@ def main():
     rf_random = RandomizedSearchCV(estimator=RF, param_distributions=random_grid, n_iter=100, cv=3, verbose=2,
                                    random_state=42, n_jobs=-1)
 
-    #train_test_BOW(train_data, test_data, MNB)
-    #train_test_BOW(train_data, test_data, SVC_obj)
     train_test_TFIDF(train_data, test_data, rf_random)
     print(rf_random.best_params_)
-    #train_test_BOW(train_data, test_data, DT)
+
+
+    DT = DecisionTreeClassifier()
+    DT_grid = {'max_depth':max_depth,
+               'min_samples_leaf':[5,10,20,50,100],
+               'criterion':['gini','entropy']}
+    rf_dt = RandomizedSearchCV(estimator=DT,param_distributions=DT_grid,n_iter=100,cv=3,verbose=2,
+                                   random_state=42, n_jobs=-1)
+
+    train_test_TFIDF(train_data, test_data, rf_dt)
+    print(rf_dt.best_params_)
+
+
+    #MNB = MultinomialNB()
+    #SVC_obj = SVC()
 
 
 
