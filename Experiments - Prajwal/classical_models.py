@@ -100,7 +100,7 @@ def word_clouds(tweets):
     for tweet in tweets:
         # comment_words += tweet + " "
         for word in str(tweet).split(" "):
-            if word in map_of_words:
+            if word in map_of_words and word is not None and word != "" :
                 map_of_words[word] += 1
             else:
                 map_of_words[word] = 1
@@ -108,10 +108,14 @@ def word_clouds(tweets):
     map_of_words.sort(reverse=True)  # natively sort tuples by first element
     i = 0
     for v, k in map_of_words:
-        if i == 5:
+        if i == 100:
             break
         i += 1
         print("%s: %d" % (k, v))
+
+    # with open('weights_words_100.csv','w') as file:
+    #     for value,key in map_of_words:
+    #         file.write("%s,%s\n"%(key,value))
 
     print()
 
@@ -120,7 +124,7 @@ def main():
     train_filename = './Data/MOLDV2_Train.csv'
 
     train_data = read_data(train_filename)
-    #6987.88word_clouds(train_data[['tweet']])
+    #word_clouds(train_data['tweet'])
     train_data = train_data[['tweet', 'subtask_a']]
     train_data = train_data[train_data['subtask_a'].notna()]
 
@@ -157,8 +161,8 @@ def main():
     rf_random = RandomizedSearchCV(estimator=RF, param_distributions=random_grid, n_iter=100, cv=3, verbose=2,
                                    random_state=42, n_jobs=-1)
 
-    train_test_TFIDF(train_data, test_data, rf_random)
-    print(rf_random.best_params_)
+    #train_test_TFIDF(train_data, test_data, rf_random)
+    #print(rf_random.best_params_)
 
 
     DT = DecisionTreeClassifier()
@@ -168,8 +172,8 @@ def main():
     rf_dt = RandomizedSearchCV(estimator=DT,param_distributions=DT_grid,n_iter=100,cv=3,verbose=2,
                                    random_state=42, n_jobs=-1)
 
-    train_test_TFIDF(train_data, test_data, rf_dt)
-    print(rf_dt.best_params_)
+    #train_test_TFIDF(train_data, test_data, rf_dt)
+    #print(rf_dt.best_params_)
 
 
     #MNB = MultinomialNB()

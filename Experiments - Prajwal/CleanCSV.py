@@ -68,7 +68,7 @@ def demoji(text):
 
 def main():
     # csv file
-    input_file = 'Data/Final - MOLDV2_Train.csv'
+    input_file = 'Data/Fully_Annotated.csv'
 
     dataset = pd.read_csv(input_file)
 
@@ -93,7 +93,7 @@ def main():
     dataset_df['tweet'] = dataset_df['tweet'].apply( lambda x : demoji(x))
 
     # convert df to csv
-    dataset_df.to_csv('./Data/Final_cleaned.csv',index = False)
+    dataset_df.to_csv('./Data/Fully_Annotated_cleaned.csv',index = False)
 
 if __name__ == "__main__":
     main()
