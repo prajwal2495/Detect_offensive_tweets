@@ -61,15 +61,19 @@ def demoji(text):
     return(emoji_pattern.sub(r'', text))
 
 
-def main():
+def main(train,test):
     # csv file
-    input_file = 'Data/MOLDV2_Train.csv'
+    input_file = None
+    if(train):
+        input_file = 'Data/Training.csv'
+    else:
+        input_file = 'Data/Testing.csv'
 
     dataset = pd.read_csv(input_file)
 
     dataset_df = pd.DataFrame(dataset)
 
-    dataset_df = dataset_df[["tweet"]]
+    dataset_df = dataset_df[["tweet","subtask_a", "subtask_b", "subtask_c"]]
     #, "subtask_a", "subtask_b", "subtask_c"
 
     #lowe case conversion
@@ -88,7 +92,13 @@ def main():
     dataset_df['tweet'] = dataset_df['tweet'].apply( lambda x : demoji(x))
 
     # convert df to csv
-    dataset_df.to_csv('./Data/EXP.csv',index = False)
+    if(train):
+        dataset_df.to_csv('./Data/Training_pre_processed.csv',index = False)
+        return dataset_df
+    else:
+        dataset_df.to_csv('./Data/Training_pre_processed.csv',index = False)
+        return dataset_df
+
 
 if __name__ == "__main__":
-    main()
+    main(train=True,test=True)

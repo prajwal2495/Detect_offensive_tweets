@@ -184,7 +184,7 @@ def main():
     train_data = train_data[train_data['subtask_a'].notna()]
 
 
-    test_filename = './Data/MOLDV2_Test.csv'
+    test_filename = 'Data/MOLDV2_Test.csv'
     test_data = read_data(test_filename)
     test_data = test_data[['tweet', 'subtask_a']]
     test_data = test_data[test_data['subtask_a'].notna()]

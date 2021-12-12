@@ -60,12 +60,12 @@ def LDA_Multi_Layer_Perceptron(train_data, test_data):
     print("\n\n")
 
 def main():
-    train_filename = './Data/MOLDV2_Train.csv'
+    train_filename = 'Data/MOLDV2_Train.csv'
     train_data = read_data(train_filename)
     train_data = train_data[['tweet', 'subtask_a']]
     train_data = train_data[train_data['subtask_a'].notna()]
 
-    test_filename = './Data/MOLDV2_Test.csv'
+    test_filename = 'Data/MOLDV2_Test.csv'
     test_data = read_data(test_filename)
     test_data = test_data[['tweet', 'subtask_a']]
     test_data = test_data[test_data['subtask_a'].notna()]
