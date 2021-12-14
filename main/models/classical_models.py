@@ -1,6 +1,21 @@
-
-#!/usr/bin/env python3
-"""! @brief A python script implementing machine learning algorithms for sentiment analysis"""
+##
+# @mainpage Offensive Language Identification for Indo-Aryan Languages
+#
+# @section model_main Classical Model Training
+# This project is mainly focused on the identifying the offensive tweets in low resource languages, we have chosen Marathi as our language of interest.
+#
+# @section notes_main Notes
+# - We have 13k tweets collected which are a mixture of Offensive and non offensive tweets
+# - Count of offensive tweets : 2418
+# - count of non offensive tweets : 10577
+# - Along with Offensive and non Offensive tweets we do have a 2 more levels of annotations
+#       - if the tweets are offensive they are sub-categorized into Targeted insult (TIN) and un-targeted insult (UNT)
+#       - if the tweets are identified as TIN, they are sub-categorized into Individual (IND), Group(GRP), and Others (OTH).
+# - The data was then pre-processed (training and testing) these pre-processed data was then fed to the model for training and testing was done on the unseen data.
+# - Through statistical significance testing using pairwise T-tests and Mann-Whitney U we have found out that:
+#       - Level A classification : LSTM is the best performing model.
+#       - Level B classification : Random Forests Classifier and Support Vector classifier are the best performing models
+#       - Level C classification : Random Forest Classifier is the best performing model.
 
 import pandas as pd
 import numpy as np
@@ -55,7 +70,7 @@ def tokenize(sentences):
         words = sorted(list(set(words)))
     return words
 
-def plot_cm(labels, predictions, p=0.5):
+def plot_cm(labels, predictions):
     """! A confusion matrix plotter.
     @param labels The ground truth labels of tweets
     @param predictions the predictions of the machine learning models
@@ -203,6 +218,7 @@ def word_clouds(tweets):
 
 
 def main():
+
     train_df = pre_processing.main(train=True) #'Data/Training_pre_processed.csv'
 
     train_data = train_df#read_data(train_filename)
