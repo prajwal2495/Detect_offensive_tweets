@@ -61,7 +61,7 @@ def demoji(text):
     return(emoji_pattern.sub(r'', text))
 
 
-def main(train,test):
+def main(train):
     # csv file
     input_file = None
     if(train):
@@ -101,4 +101,4 @@ def main(train,test):
 
 
 if __name__ == "__main__":
-    main(train=True,test=True)
+    main(train=False)

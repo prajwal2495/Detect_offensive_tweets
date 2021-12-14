@@ -1,40 +1,53 @@
+
+#!/usr/bin/env python3
+"""! @brief A python script implementing machine learning algorithms for sentiment analysis"""
+
 import pandas as pd
 import numpy as np
 import warnings
 import pre_processing
 
 from sklearn import metrics
-import seaborn as sns
-from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestClassifier
-from sklearn.metrics import RocCurveDisplay
 from sklearn.metrics import plot_roc_curve
 from sklearn.feature_extraction.text import TfidfVectorizer, CountVectorizer
-from sklearn.metrics import confusion_matrix, classification_report, roc_curve, auc, roc_auc_score, ConfusionMatrixDisplay
-from sklearn.model_selection import RandomizedSearchCV, RepeatedStratifiedKFold#,learning_curve
-from yellowbrick.model_selection import learning_curve
-import matplotlib.pyplot as plt
+from sklearn.metrics import confusion_matrix, classification_report, ConfusionMatrixDisplay
+from sklearn.model_selection import RandomizedSearchCV
 from sklearn.naive_bayes import MultinomialNB
 from sklearn.pipeline import make_pipeline
 from sklearn.tree import DecisionTreeClassifier
 from sklearn.decomposition import LatentDirichletAllocation as LDA
+from sklearn.svm import SVC
+
+import matplotlib.pyplot as plt
+import seaborn as sns
 
 warnings.filterwarnings("ignore")
-from sklearn.svm import SVC
+
 
 
 def read_data(filename):
+    """! A file reader.
+    @param filename  The name of the Training or Testing dataset.
+    @return  A Pandas dataframe of the given dataset
+    """
     file_content = pd.read_csv(filename)
     return file_content
 
 
 def word_extraction(sentence):
+    """! A word extractor.
+    @param sentence  The name of the Training or Testing dataset.
+    """
     words = sentence.split()
     cleaned_text = [w for w in words]
     return cleaned_text
 
 
 def tokenize(sentences):
+    """! word tokenizer methodr.
+    @param sentences Each tweet in the dataset.
+    """
     words = []
     for sentence in sentences:
         w = word_extraction(sentence)
@@ -43,6 +56,10 @@ def tokenize(sentences):
     return words
 
 def plot_cm(labels, predictions, p=0.5):
+    """! A confusion matrix plotter.
+    @param labels The ground truth labels of tweets
+    @param predictions the predictions of the machine learning models
+    """
     # print(labels)
     # print(predictions)
     cm = confusion_matrix(labels, predictions)
@@ -56,6 +73,13 @@ def plot_cm(labels, predictions, p=0.5):
 
 
 def train_test_TFIDF(train_data, test_data, model):
+    """! This method uses the training data to train a given model and test on the unseen testing dataset.
+    ! This method uses the TFIDF vectorizer
+    ! This method also plots the confusion matrix and the ROC AUC curve of a given model.
+    @param train_data The name of the Training dataset.
+    @param test_data The name of the Testing dataset.
+    @param model object of the machine learning model.
+    """
     print("TFIDF + ", model)
     model = make_pipeline(TfidfVectorizer(ngram_range=(1, 5)), model)
 
@@ -74,17 +98,24 @@ def train_test_TFIDF(train_data, test_data, model):
     cm = confusion_matrix(y_test, labels)
     print("Confusion matrix\n", cm)
     print(classification_report(y_test, labels, digits=4))
-    # disp = ConfusionMatrixDisplay(confusion_matrix=cm, display_labels=np.unique(y_test))
-    # disp.plot()
-    # plt.show()
-    # ax = plt.gca()
-    # roc_disp = plot_roc_curve(model,X_test,y_test ,ax=ax,alpha=0.8)
-    # plt.show()
+    disp = ConfusionMatrixDisplay(confusion_matrix=cm, display_labels=np.unique(y_test))
+    disp.plot()
+    plt.show()
+    ax = plt.gca()
+    roc_disp = plot_roc_curve(model,X_test,y_test ,ax=ax,alpha=0.8)
+    plt.show()
 
     print("\n\n")
 
 
 def train_test_LDA(train_data, test_data, model):
+    """! This method uses the training data to train a given model and test on the unseen testing dataset.
+    ! This method uses the Latent Dirichlet allocation
+    ! This method also plots the confusion matrix and the ROC AUC curve of a given model.
+    @param train_data The name of the Training dataset.
+    @param test_data The name of the Testing dataset.
+    @param model object of the machine learning model.
+    """
     print("TFIDF + ", model)
     model = make_pipeline(CountVectorizer(), LDA(), model)
     X_train = train_data['tweet'].values.astype('U')
@@ -100,14 +131,24 @@ def train_test_LDA(train_data, test_data, model):
     print("Confusion matrix\n", cm)
     print(classification_report(y_test, labels, digits=4))
 
+    disp = ConfusionMatrixDisplay(confusion_matrix=cm, display_labels=np.unique(y_test))
+    disp.plot()
+    plt.show()
     ax = plt.gca()
-    roc_disp = plot_roc_curve(model,X_test,y_test,ax=ax,alpha=0.8)
+    roc_disp = plot_roc_curve(model,X_test,y_test ,ax=ax,alpha=0.8)
     plt.show()
 
     print("\n\n")
 
 
 def train_test_BOW(train_data, test_data, model):
+    """! This method uses the training data to train a given model and test on the unseen testing dataset.
+    ! This method uses the Count Vectorizer
+    ! This method also plots the confusion matrix and the ROC AUC curve of a given model.
+    @param train_data The name of the Training dataset.
+    @param test_data The name of the Testing dataset.
+    @param model object of the machine learning model.
+    """
     print("TFIDF + ", model)
     model = make_pipeline(CountVectorizer(ngram_range=(1, 1)), model)
     X_train = train_data['tweet'].values.astype('U')
@@ -123,13 +164,19 @@ def train_test_BOW(train_data, test_data, model):
     print("Confusion matrix\n", cm)
     print(classification_report(y_test, labels, digits=4))
 
+    disp = ConfusionMatrixDisplay(confusion_matrix=cm, display_labels=np.unique(y_test))
+    disp.plot()
+    plt.show()
     ax = plt.gca()
-    roc_disp = plot_roc_curve(model,X_test,y_test,ax=ax,alpha=0.8)
+    roc_disp = plot_roc_curve(model,X_test,y_test ,ax=ax,alpha=0.8)
     plt.show()
 
     print("\n\n")
 
 def word_clouds(tweets):
+    """! A Word cloud generating method. This method does not plot a traditional word cloud instead gives a dictionary of words and it's frequencies.
+    @param tweets Each tweet in the dataset
+    """
     comment_words = ""
     map_of_words = {}
     for tweet in tweets:
@@ -156,14 +203,14 @@ def word_clouds(tweets):
 
 
 def main():
-    train_df = pre_processing.main(train=True,test=False) #'Data/Training_pre_processed.csv'
+    train_df = pre_processing.main(train=True) #'Data/Training_pre_processed.csv'
 
     train_data = train_df#read_data(train_filename)
     #word_clouds(train_data['tweet'])
     train_data = train_data[['tweet', 'subtask_a']]
     train_data = train_data[train_data['subtask_a'].notna()]
 
-    test_df = pre_processing.main(train=False,test=True)#'Data/Testing_pre_processed.csv'
+    test_df = pre_processing.main(train=False)#'Data/Testing_pre_processed.csv'
     test_data = test_df
     test_data = test_data[['tweet', 'subtask_a']]
     test_data = test_data[test_data['subtask_a'].notna()]
@@ -209,7 +256,6 @@ def main():
     train_test_TFIDF(train_data, test_data, dt_random)
     print(dt_random.best_params_)
     print("end of DTC")
-    # print(learning_curve(DT,train_data['tweet'],train_data['subtask_a'],cv=5 ,scoring='accuracy'))
 
 
     MNB = MultinomialNB(fit_prior=True)
@@ -220,7 +266,6 @@ def main():
 
     # train_test_TFIDF(train_data, test_data, MNB_random)
     # print(MNB_random.best_params_)
-    # # print(learning_curve(MNB_random,train_data['tweet'],train_data['subtask_a'],cv=5 ,scoring='accuracy'))
     # print("End of MNB")
 
     SVC_obj = SVC(random_state=42,class_weight='balanced')
@@ -232,8 +277,7 @@ def main():
 
     # train_test_TFIDF(train_data, test_data, SVC_random)
     # print(SVC_random.best_params_)
-    #print(learning_curve(SVC_random, train_data['tweet'], train_data['subtask_a'], cv=5, scoring='accuracy'))
-    print("End of SVC")
+    # print("End of SVC")
 
 
 if __name__ == '__main__':
