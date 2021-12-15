@@ -43,3 +43,9 @@
   - Using Jupyter notebook, the model summary, epoch training and ROC, precision recall curves are well plotted and represented.
 
 The code is self explanatory and very easy to execute.
+
+## Documentation 
+- ### Doxygen
+  - Doxygen was used to document all the python scripts.
+  - All information on how each scripts works and the methods inside those scripts, what were they intended for is provided in this documentation.
+  - The html folder is present inside the main directory. index.html file provides all the information.
