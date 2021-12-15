@@ -197,10 +197,12 @@ def main():
 
     train_df = pre_processing.main(train=True)
     test_df = pre_processing.main(train=False)
+    train_df = train_df[train_df['subtask_a'] == "Offensive"]
+    test_df = test_df[test_df['subtask_a'] == "Offensive"]
 
     train_df_encoded = train_df.copy()
     test_df_encoded = test_df.copy()
-    map_sentiment = {"Offensive": 0, "not offensive": 1}
+    map_sentiment = {"TIN":0, "UNT":1}
     train_df['subtask_b'] = train_df_encoded['subtask_b'].map(map_sentiment)
     test_df['subtask_b'] = test_df_encoded['subtask_b'].map(map_sentiment)
 

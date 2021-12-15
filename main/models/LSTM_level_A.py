@@ -200,9 +200,10 @@ def main():
 
     train_df_encoded = train_df.copy()
     test_df_encoded = test_df.copy()
+
     map_sentiment = {"Offensive": 0, "not offensive": 1}
-    train_df['subtask_a'] = train_df_encoded['subtask_a'].map(map_sentiment)
-    test_df['subtask_a'] = test_df_encoded['subtask_a'].map(map_sentiment)
+    train_df_encoded['subtask_a'] = train_df_encoded['subtask_a'].map(map_sentiment)
+    test_df_encoded['subtask_a'] = test_df_encoded['subtask_a'].map(map_sentiment)
 
     y_train, y_test, y_train_encoded, y_test_encoded, y_train_mapped, y_test_mapped, X_train, X_test = feature_target_preparation(
         train_df, train_df_encoded, test_df, test_df_encoded)

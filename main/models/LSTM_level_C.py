@@ -199,11 +199,14 @@ def main():
     train_df = pre_processing.main(train=True)
     test_df = pre_processing.main(train=False)
 
+    train_df = train_df[train_df['subtask_b'] == "TIN"]
+    test_df = test_df[test_df['subtask_b'] == "TIN"]
+
     train_df_encoded = train_df.copy()
     test_df_encoded = test_df.copy()
-    map_sentiment = {"Offensive": 0, "not offensive": 1}
-    train_df['subtask_c'] = train_df_encoded['subtask_c'].map(map_sentiment)
-    test_df['subtask_c'] = test_df_encoded['subtask_c'].map(map_sentiment)
+    map_sentiment = {"IND":0, "GRP":1, "OTH":2}
+    train_df_encoded['subtask_c'] = train_df_encoded['subtask_c'].map(map_sentiment)
+    test_df_encoded['subtask_c'] = test_df_encoded['subtask_c'].map(map_sentiment)
 
     y_train, y_test, y_train_encoded, y_test_encoded, y_train_mapped, y_test_mapped, X_train, X_test = feature_target_preparation(
         train_df, train_df_encoded, test_df, test_df_encoded)
