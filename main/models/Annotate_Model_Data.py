@@ -5,10 +5,10 @@
 
 
 # The path to the local git repo for Indic NLP library
-INDIC_NLP_LIB_HOME=r"/indic_nlp_library"
+INDIC_NLP_LIB_HOME=r"/Data/indic_nlp_library"
 
 # The path to the local git repo for Indic NLP Resources
-INDIC_NLP_RESOURCES=r"/indic_nlp_resources"
+INDIC_NLP_RESOURCES=r"Data/indic_nlp_resources"
 
 import sys
 import pandas as pd
