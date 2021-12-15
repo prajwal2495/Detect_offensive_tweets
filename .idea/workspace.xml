@@ -5,16 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="42ab44f9-c894-47e7-a129-14c8ec221121" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/main/models/बघत/बघत_2021-12-07_to_2021-12-12.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/main/models/म्हणतो/म्हणतो_2021-12-07_to_2021-12-12.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/main/models/म्हनतो/म्हनतो_2021-12-07_to_2021-12-12.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/main/models/सरवात/सरवात_2021-12-07_to_2021-12-12.csv" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/Detect_offensive_tweets.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/Detect_offensive_tweets.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/models/classical_models.py" beforeDir="false" afterPath="$PROJECT_DIR$/main/models/classical_models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/models/pre_processing.py" beforeDir="false" afterPath="$PROJECT_DIR$/main/models/pre_processing.py" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/main/Doxyfile" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -25,12 +17,15 @@
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
   <component name="ProjectId" id="22FbyxZmdeVkbvS7SyVwiwPbKeU" />
-  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true">
+    <ConfirmationsSetting value="2" id="Add" />
+  </component>
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
   </component>
@@ -99,6 +94,9 @@
       <module name="Detect_offensive_tweets" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
       <option name="SDK_HOME" value="" />
       <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/main/models" />
       <option name="IS_MODULE_SDK" value="true" />
@@ -114,7 +112,6 @@
       <method v="2" />
     </configuration>
     <list>
-      <item itemvalue="Python." />
       <item itemvalue="Python.pre_processing" />
       <item itemvalue="Python.classical_models" />
     </list>
@@ -135,5 +132,20 @@
       <updated>1639436541232</updated>
     </task>
     <servers />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="VcsManagerConfiguration">
+    <option name="ADD_EXTERNAL_FILES_SILENTLY" value="true" />
   </component>
 </project>
