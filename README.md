@@ -39,5 +39,7 @@
   - Make sure your device has the required GPU to load the model, otherwise any environment or google collab should work fine.
   - This implmentation can be seen in the file LSTM_level_A,LSTM_level_B,LSTM_level_C python scripts.
   - Each level has an implementation because each level requires different dense layer adjustments.
+  - I would recommend using the Jupyter notebook version of LSTM which is present in the LSTM directory under main directory
+  - Using Jupyter notebook, the model summary, epoch training and ROC, precision recall curves are well plotted and represented.
 
 The code is self explanatory and very easy to execute.

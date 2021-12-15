@@ -4,33 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="42ab44f9-c894-47e7-a129-14c8ec221121" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/Data/Clean_MOLD_V2.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Data/MOLDV2_Test.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Data/MOLDV2_Train.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Data/Old_data/MOLDV2_Train.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Data/Old_data/Marathi_Test.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Data/Old_data/Marathi_Test_Level_B.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Data/Old_data/Marathi_Test_level_C.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Data/Old_data/Marathi_Train.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Data/Old_data/Marathi_Train_MARATHI.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Data/Old_data/Marathi_Train_level_C.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Data/Old_data/Marathi_Train_level_C_MARATHI.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Data/Old_data/Marathi_train_level_B.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Data/Old_data/Marathi_train_level_B_MARATHI.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Data/Old_data/hindi_marathi_Level_A.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Data/Old_data/hindi_marathi_Level_B.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Data/Old_data/hindi_marathi_Level_C.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Data/Testing.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Data/Training.csv" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/Data/stopwords.txt" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/Statistical_Significance/significance_testing/Level_a_significance_tests.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/main/Statistical_Significance/significance_testing/Level_a_significance_tests.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/Statistical_Significance/significance_testing/Level_b_significance_tests.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/main/Statistical_Significance/significance_testing/Level_b_significance_tests.ipynb" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/main/Statistical_Significance/significance_testing/Level_c_significance_tests.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/main/Statistical_Significance/significance_testing/Level_c_significance_tests.ipynb" afterDir="false" />
-    </list>
+    <list default="true" id="42ab44f9-c894-47e7-a129-14c8ec221121" name="Changes" comment="" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
