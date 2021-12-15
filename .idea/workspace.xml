@@ -5,8 +5,31 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="42ab44f9-c894-47e7-a129-14c8ec221121" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/main/Doxyfile" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Data/Clean_MOLD_V2.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Data/MOLDV2_Test.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Data/MOLDV2_Train.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Data/Old_data/MOLDV2_Train.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Data/Old_data/Marathi_Test.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Data/Old_data/Marathi_Test_Level_B.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Data/Old_data/Marathi_Test_level_C.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Data/Old_data/Marathi_Train.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Data/Old_data/Marathi_Train_MARATHI.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Data/Old_data/Marathi_Train_level_C.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Data/Old_data/Marathi_Train_level_C_MARATHI.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Data/Old_data/Marathi_train_level_B.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Data/Old_data/Marathi_train_level_B_MARATHI.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Data/Old_data/hindi_marathi_Level_A.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Data/Old_data/hindi_marathi_Level_B.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Data/Old_data/hindi_marathi_Level_C.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Data/Testing.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Data/Training.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/Data/stopwords.txt" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/Statistical_Significance/significance_testing/Level_a_significance_tests.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/main/Statistical_Significance/significance_testing/Level_a_significance_tests.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/Statistical_Significance/significance_testing/Level_b_significance_tests.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/main/Statistical_Significance/significance_testing/Level_b_significance_tests.ipynb" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/main/Statistical_Significance/significance_testing/Level_c_significance_tests.ipynb" beforeDir="false" afterPath="$PROJECT_DIR$/main/Statistical_Significance/significance_testing/Level_c_significance_tests.ipynb" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -28,8 +51,14 @@
     <property name="ASKED_ADD_EXTERNAL_FILES" value="true" />
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/main/models/Data" />
   </component>
-  <component name="RunManager" selected="Python.classical_models">
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/main/models/Data" />
+    </key>
+  </component>
+  <component name="RunManager" selected="Python.LSTM_level_A">
     <configuration type="PythonConfigurationType" factoryName="Python">
       <module name="Detect_offensive_tweets" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -61,6 +90,27 @@
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/venv" />
+      <option name="PARAMETERS" value="" />
+      <option name="SHOW_COMMAND_LINE" value="false" />
+      <option name="EMULATE_TERMINAL" value="false" />
+      <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
+    </configuration>
+    <configuration name="LSTM_level_A" type="PythonConfigurationType" factoryName="Python" temporary="true" nameIsGenerated="true">
+      <module name="Detect_offensive_tweets" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs>
+        <env name="PYTHONUNBUFFERED" value="1" />
+      </envs>
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/main/models" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <option name="SCRIPT_NAME" value="$PROJECT_DIR$/main/models/LSTM_level_A.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
@@ -114,9 +164,11 @@
     <list>
       <item itemvalue="Python.pre_processing" />
       <item itemvalue="Python.classical_models" />
+      <item itemvalue="Python.LSTM_level_A" />
     </list>
     <recent_temporary>
       <list>
+        <item itemvalue="Python.LSTM_level_A" />
         <item itemvalue="Python.classical_models" />
         <item itemvalue="Python.pre_processing" />
       </list>
