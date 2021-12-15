@@ -55,6 +55,17 @@
 #       - Loss = categorical cross entropy
 #       - Optimizer = adam
 #       - Metrics = accuracy
+# @section dependency_main Libraries
+# - Python
+# - Pandas
+# - Numpy
+# - Matplotlib
+# - Seaborn
+# - Scikit Learn
+# - Tensorflow, Keras
+# - Jupyter notebook
+# - Scipy
+# - Pingouin
 
 
 
