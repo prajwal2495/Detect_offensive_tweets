@@ -1,0 +1,95 @@
+\hypertarget{index_notes_main}{}\doxysection{Overview}\label{index_notes_main}
+
+\begin{DoxyItemize}
+\item We have 13k tweets collected which are a mixture of Offensive and non offensive tweets
+\item Count of offensive tweets \+: 2418
+\item count of non offensive tweets \+: 10577
+\item Along with Offensive and non Offensive tweets we do have a 2 more levels of annotations
+\begin{DoxyItemize}
+\item if the tweets are offensive they are sub-\/categorized into Targeted insult (TIN) and un-\/targeted insult (UNT)
+\item if the tweets are identified as TIN, they are sub-\/categorized into Individual (IND), Group(\+GRP), and Others (OTH).
+\end{DoxyItemize}
+\item The data was then pre-\/processed (training and testing) these pre-\/processed data was then fed to the model for training and testing was done on the unseen data.
+\item Through statistical significance testing using pairwise T-\/tests and Mann-\/\+Whitney U we have found out that\+:
+\begin{DoxyItemize}
+\item Level A classification \+: LSTM is the best performing model.
+\item Level B classification \+: Random Forests Classifier and Support Vector classifier are the best performing models
+\item Level C classification \+: Random Forest Classifier is the best performing model.
+\end{DoxyItemize}
+\end{DoxyItemize}\hypertarget{index_model_main}{}\doxysection{Classical Model Training}\label{index_model_main}
+This project is mainly focused on the identifying the offensive tweets in low resource languages, we have chosen Marathi as our language of interest. Models like Random forest classifier, Decision tree classifier, Support vector classifier, Multinomial naive byes were used for training nad testing purposes.
+\begin{DoxyItemize}
+\item Decision Tree Classifier
+\begin{DoxyItemize}
+\item Decision tree builds classification in the form of a tree structure while breaking the dataset in smaller and smaller subsets while incrementing the structure simultaneously. In our dataset, for level A, a decision tree would have to break the dataset in “\+Offensive” and “\+Non-\/\+Offensive”. Similarly for Level B and Level C, a decision tree would have the task to form a tree structure. With this background, a Decision Tree model was trained.
+\item Hyper-\/parameter tuning\+: The parameters used for tuning are max\+\_\+depth, min\+\_\+samples\+\_\+leaf, criteria(gini, entropy).
+\item This was run for 3 cross validations and for 10 iterations each. These parameters were selected according to how the model performed on previous experiments.
+\end{DoxyItemize}
+\item Random Forest Classifier
+\begin{DoxyItemize}
+\item A Random Forest classifier estimates based on the combination of different Decision Trees. We can say that it fits a number of decision trees on various samples of the dataset. Each tree in the forest is built on random best set of features and this is what makes Random Forest one of the good performing algorithms while working with Natural Language Processing.
+\item For hyperparameter tuning, the max\+\_\+features selected were “auto” and “sqrt”, max\+\_\+depth was selected from a range, min\+\_\+sample\+\_\+split and min\+\_\+sample\+\_\+leaf were hardcoded and a grid was formed.
+\item Bootstrap (True/\+False) is used to select samples for training each tree
+\end{DoxyItemize}
+\item Multinomial Naive Bayes
+\begin{DoxyItemize}
+\item MNB has been known for performing better with text favoured tasks. Naive Bayes can be put as a simple text classification algorithm which is based on the probability of the events occurring such that there is no interdependence between the variables. One good feature of Naive Bayes is that it performs well with less training data as well, and in our case while we were working in phases of generating a low resource language dataset, we thought that it would perform good.
+\item Here, for hyperparameter tuning, we are using the alpha values ranging from 1 to 5 forming a grid to be tuned with 3 cross-\/validations and 100 iterations.
+\end{DoxyItemize}
+\item Support Vector Classifier
+\begin{DoxyItemize}
+\item SVM algorithm determines the best decision boundary between the vectors. It basically decides where to draw the best line that divides the space in distinctive subspaces. \+Our approach was to find vector representation which can encode as much information as possible and then we apply the SVM algorithm for classification.
+\item The class weight used for SVC is ‘balanced’
+\item The grid for SVC consists of kernel (linear, polynomial, rbf, sigmoid) and gamma as scale/auto.
+\item 3 cross validations with 100 iterations. 
+\end{DoxyItemize}
+\end{DoxyItemize}\hypertarget{index_LSTM_main}{}\doxysection{LSTM Training}\label{index_LSTM_main}
+
+\begin{DoxyItemize}
+\item Why did we choose LSTM for the problem at hand
+\begin{DoxyItemize}
+\item Humans don\textquotesingle{}t think from scratch, when we read an article, we understand each word based on the previous word. Traditional Neural networks fail to do this.
+\item Recurrent neural networks address this issue. They are networks with loops in them, allowing information to persist.
+\item Long Short Term Memory networks – usually just called “\+LSTMs” – are a special kind of RNN, capable of learning long-\/term dependencies. They were introduced by Hochreiter \& Schmidhuber (1997).
+\item LSTMs are explicitly designed to avoid the long-\/term dependency problem. Remembering information for long periods of time is practically their default behavior, not something they struggle to learn! This exact behavior helps us tremendously as we are working on low resource languages and a model that remembers information/features for a long period of time is a necessity.
+\end{DoxyItemize}
+\item Model Summary\+:
+\begin{DoxyItemize}
+\item An embedding layer with parameters -\/
+\begin{DoxyItemize}
+\item Input dim = vocabulary size
+\item Output dim = 32
+\item Input length = size of the padded sequence
+\item Mask\+\_\+zer0 = True to ignore 0
+\end{DoxyItemize}
+\item An LSTM layer with parameter -\/
+\begin{DoxyItemize}
+\item Units = 100 (the resulting accuracy is almost same regardless of this value.
+\end{DoxyItemize}
+\item Three dense layers
+\item An output dense layer with parameters
+\begin{DoxyItemize}
+\item Units = 2 and 3 for level A,B and C respectively.
+\item Activation = softmax ( for multi classification problem)
+\end{DoxyItemize}
+\item Compilation with parameters
+\begin{DoxyItemize}
+\item Loss = categorical cross entropy
+\item Optimizer = adam
+\item Metrics = accuracy 
+\end{DoxyItemize}
+\end{DoxyItemize}
+\end{DoxyItemize}\hypertarget{index_dependency_main}{}\doxysection{Libraries}\label{index_dependency_main}
+
+\begin{DoxyItemize}
+\item Python
+\item Pandas
+\item Numpy
+\item Matplotlib
+\item Seaborn
+\item Scikit Learn
+\item Tensorflow, Keras
+\item Jupyter notebook
+\item Scipy
+\item Pingouin 
+\end{DoxyItemize}
