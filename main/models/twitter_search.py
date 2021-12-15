@@ -7,8 +7,7 @@ import time
 import os
 import sys
 
-'''
-In order to use this script you should register a data-mining application
+"""!In order to use this script you should register a data-mining application
 with Twitter.  Good instructions for doing so can be found here:
 http://marcobonzanini.com/2015/03/02/mining-twitter-data-with-python-part-1/
 
@@ -21,19 +20,21 @@ python twitter_search.py
 
 We used Python 3 and tweepy version 3.5.0.  You will also need the other
 packages imported above.
-'''
+"""
 
-'''
+"""
 API key = aAXk7BfNJMIu7MWnGyqY5mnQ6
 API secret key = kKa6EIfb7T1NxHurIWQ2r7cH3fKOR8X7St2tECUZmkCOI4AEVG
 Bearer token = AAAAAAAAAAAAAAAAAAAAAK3zHQEAAAAAHpc37%2FqWNox71dnHoF72UnwEJRk%3DooMWvXfxDQ9ZVRbibmeSEyILZEFthXokDoJSAQvzxL1rYiJNwm
 Access token = 3221158459-H7gxfAjwKpTfmCJkcurm8gd7bJOzySo6WixLVa1
 Access token secret = fawDcbdZiGfGyU0TcQ6aIXbO8pkXSRgsjMOiGjLQs0paQ
-'''
+"""
 
 
 def load_api():
-    ''' Function that loads the twitter API after authorizing the user. '''
+    """! Method used to load tweepy API
+    @:return returns a tweepy API object
+    """
 
     consumer_key = 'aAXk7BfNJMIu7MWnGyqY5mnQ6'
     consumer_secret = 'kKa6EIfb7T1NxHurIWQ2r7cH3fKOR8X7St2tECUZmkCOI4AEVG'
@@ -46,9 +47,15 @@ def load_api():
 
 
 def tweet_search(api, query, max_tweets, max_id, since_id, geocode):
-    ''' Function that takes in a search string 'query', the maximum
-        number of tweets 'max_tweets', and the minimum (i.e., starting)
-        tweet id. It returns a list of tweepy.models.Status objects. '''
+    """! Method used to scrap the twitter for MArathi tweets.
+    @param api Tweepy API object
+    @param query List of Marathi phrases/words used to query the tweepy api to scrap the twitter
+    @param max_tweets Maximum number of tweets to be extracted
+    @param max_id the max_id of all the tweets extracted
+    @param since_id To keep track of teh last tweet that was extracted
+    @param geocode area of search from where the tweets needs to extracted from
+    @:return all the searched tweets and maximum id
+    """
 
     searched_tweets = []
     while len(searched_tweets) < max_tweets:
@@ -73,11 +80,13 @@ def tweet_search(api, query, max_tweets, max_id, since_id, geocode):
 
 
 def get_tweet_id(api, date='', days_ago=100, query='a'):
-    ''' Function that gets the ID of a tweet. This ID can then be
-        used as a 'starting point' from which to search. The query is
-        required and has been set to a commonly used word by default.
-        The variable 'days_ago' has been initialized to the maximum
-        amount we are able to search back in time (9).'''
+    """! Method used to scrap the twitter for MArathi tweets.
+    @param api Tweepy API object
+    @param date date of the tweet that was tweeted
+    @param days_ago Max number of days to be scanned
+    @param query List of Marathi phrases/words used to query the tweepy api to scrap the twitter
+    @return the Id of the first tweet
+    """
 
     if date:
         # return an ID from the start of the given day
@@ -95,17 +104,12 @@ def get_tweet_id(api, date='', days_ago=100, query='a'):
         return tweet[0].id
 
 
-def write_tweets(tweets, filename):
-    ''' Function that appends tweets to a file. '''
-
-    with open(filename, 'a') as f:
-        f.write('{"data": [')
-        for tweet in tweets:
-            json.dump(tweet._json, f)
-            f.write(',\n')
-        f.write(']}')
 
 def write_to_csv(tweets, filename):
+    """! A method used to write all the extracted tweets to a CSV file
+    @param tweets all teh extracted tweets
+    @param filename Filename where the tweets will be written to.
+    """
     csv_file = open(filename,'a')
     csvWriter = csv.writer(csv_file)
     for i in range(len(tweets)):
@@ -113,11 +117,12 @@ def write_to_csv(tweets, filename):
 
 
 def main():
-    ''' This is a script that continuously searches for tweets
+    """!This is a script that continuously searches for tweets
         that were created over a given number of days. The search
-        dates and search phrase can be changed below. '''
+        dates and search phrase can be changed below.
+    """
 
-    ''' search variables: '''
+    """search variables: """
     search_phrases = ['म्हणतो', 'म्हनतो', 'बघत', 'सरवात']
     time_limit = 1.5  # runtime limit in hours
     max_tweets = 1000  # number of tweets per search (will be
@@ -134,7 +139,7 @@ def main():
 
         print('Search phrase =', search_phrase)
 
-        ''' other variables '''
+        """ other variables """
         name = search_phrase.split()[0]
         json_file_root = name + '/' + name
         os.makedirs(os.path.dirname(json_file_root), exist_ok=True)
