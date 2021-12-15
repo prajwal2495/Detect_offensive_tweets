@@ -1,10 +1,7 @@
 ##
 # @mainpage Offensive Language Identification for Indo-Aryan Languages
 #
-# @section model_main Classical Model Training
-# This project is mainly focused on the identifying the offensive tweets in low resource languages, we have chosen Marathi as our language of interest.
-#
-# @section notes_main Notes
+# @section notes_main Overview
 # - We have 13k tweets collected which are a mixture of Offensive and non offensive tweets
 # - Count of offensive tweets : 2418
 # - count of non offensive tweets : 10577
@@ -16,6 +13,51 @@
 #       - Level A classification : LSTM is the best performing model.
 #       - Level B classification : Random Forests Classifier and Support Vector classifier are the best performing models
 #       - Level C classification : Random Forest Classifier is the best performing model.
+#
+# @section model_main Classical Model Training
+# This project is mainly focused on the identifying the offensive tweets in low resource languages, we have chosen Marathi as our language of interest.
+# Models like Random forest classifier, Decision tree classifier, Support vector classifier, Multinomial naive byes were used for training nad testing purposes.
+# - Decision Tree Classifier
+#    - Decision tree builds classification in the form of a tree structure while breaking the dataset in smaller and smaller subsets while incrementing the structure simultaneously. In our dataset, for level A, a decision tree would have to break the dataset in “Offensive” and “Non-Offensive”. Similarly for Level B and Level C, a decision tree would have the task to form a tree structure. With this background, a Decision Tree model was trained.
+#    - Hyper-parameter tuning: The parameters used for tuning are max_depth, min_samples_leaf, criteria(gini, entropy).
+#    - This was run for 3 cross validations and for 10 iterations each. These parameters were selected according to how the model performed on previous experiments.
+# - Random Forest Classifier
+#    - A Random Forest classifier estimates based on the combination of different Decision Trees. We can say that it fits a number of decision trees on various samples of the dataset. Each tree in the forest is built on random best set of features and this is what makes Random Forest one of the good performing algorithms while working with Natural Language Processing.
+#    - For hyperparameter tuning, the max_features selected were “auto” and “sqrt”, max_depth was selected from a range, min_sample_split and min_sample_leaf were hardcoded and a grid was formed.
+#    - Bootstrap (True/False) is used to select samples for training each tree
+# - Multinomial Naive Bayes
+#    - MNB has been known for performing better with text favoured tasks. Naive Bayes can be put as a simple text classification algorithm which is based on the probability of the events occurring such that there is no interdependence between the variables. One good feature of Naive Bayes is that it performs well with less training data as well, and in our case while we were working in phases of generating a low resource language dataset, we thought that it would perform good.
+#    - Here, for hyperparameter tuning, we are using the alpha values ranging from 1 to 5 forming a grid to be tuned with 3 cross-validations and 100 iterations.
+# - Support Vector Classifier
+#    - SVM algorithm determines the best decision boundary between the vectors. It basically decides where to draw the best line that divides the space in distinctive subspaces.Our approach was to find vector representation which can encode as much information as possible and then we apply the SVM algorithm for classification.
+#    - The class weight used for SVC is ‘balanced’
+#    - The grid for SVC consists of kernel (linear, polynomial, rbf, sigmoid) and gamma as scale/auto.
+#    - 3 cross validations with 100 iterations.
+# @section LSTM_main LSTM Training
+# - Why did we choose LSTM for the problem at hand
+#   - Humans don't think from scratch, when we read an article, we understand each word based on the previous word. Traditional Neural networks fail to do this.
+#   - Recurrent neural networks address this issue. They are networks with loops in them, allowing information to persist.
+#   - Long Short Term Memory networks – usually just called “LSTMs” – are a special kind of RNN, capable of learning long-term dependencies. They were introduced by Hochreiter & Schmidhuber (1997).
+#   - LSTMs are explicitly designed to avoid the long-term dependency problem. Remembering information for long periods of time is practically their default behavior, not something they struggle to learn! This exact behavior helps us tremendously as we are working on low resource languages and a model that remembers information/features for a long period of time is a necessity.
+# - Model Summary:
+#   - An embedding layer with parameters -
+#       - Input dim = vocabulary size
+#       - Output dim = 32
+#       - Input length = size of the padded sequence
+#       - Mask_zer0 = True to ignore 0
+#   - An LSTM layer with parameter -
+#       - Units = 100 (the resulting accuracy is almost same regardless of this value.
+#   - Three dense layers
+#   - An output dense layer with parameters
+#       - Units = 2 and 3 for level A,B and C respectively.
+#       - Activation = softmax ( for multi classification problem)
+#   - Compilation with parameters
+#       - Loss = categorical cross entropy
+#       - Optimizer = adam
+#       - Metrics = accuracy
+
+
+
 
 import pandas as pd
 import numpy as np
