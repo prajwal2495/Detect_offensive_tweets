@@ -115,4 +115,5 @@ def main(train):
 
 
 if __name__ == "__main__":
+    ##train Boolean value, True mean training dataset is being pre-processed, False means Testing dataset is being pre-processed
     main(train=False)

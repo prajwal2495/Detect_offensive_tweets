@@ -89,7 +89,7 @@ def plot_cm(labels, predictions):
 
 def train_test_TFIDF(train_data, test_data, model):
     """! This method uses the training data to train a given model and test on the unseen testing dataset.
-    ! This method uses the TFIDF vectorizer
+    ! This method uses the TFIDF vectorizer.
     ! This method also plots the confusion matrix and the ROC AUC curve of a given model.
     @param train_data The name of the Training dataset.
     @param test_data The name of the Testing dataset.
