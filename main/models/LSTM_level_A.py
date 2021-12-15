@@ -50,6 +50,13 @@ def read_data(filename):
 
 
 def feature_target_preparation(train_df, train_df_encoded, test_df, test_df_encoded):
+    """! Method to prepare feature and targets for the LSTM model
+    @param train_df  Training DataFrame.
+    @param train_df_encoded Training dataframe where the targets are encoded to numbers.
+    @param test_df Testing DataFrame.
+    @param test_df_encoded Testing dataframe where the targets are encoded to numbers.
+    @return  Training Targets that categorized and Testing targets that are categorized
+    """
     y_train = train_df['subtask_a'].copy()
     y_test = test_df['subtask_a'].copy()
 
@@ -65,6 +72,10 @@ def feature_target_preparation(train_df, train_df_encoded, test_df, test_df_enco
 
 
 def get_maxlen_tweet(X_train):
+    """! Method to the longest tweet for padding purposes.
+    @param X_train  Training DataFrame.
+    @return An integer that tells the length of the largest tweets.
+    """
     max_word_count = 0
     word_count = []
     #
@@ -77,6 +88,11 @@ def get_maxlen_tweet(X_train):
 
 
 def build_LSTM_model(vocab_length, max_len_tweet):
+    """! Method to build a LSTM network.
+    @param vocab_length length of the Training DataFrame taking into account the unique words.
+    @param max_len_tweet An integer that tells the length of the largest tweets.
+    @return LSTM model object.
+    """
     model_LSTM = Sequential()
     model_LSTM.add(layers.Embedding(vocab_length, output_dim=32, input_length=max_len_tweet, mask_zero=True))
     model_LSTM.add(layers.LSTM(100))
@@ -90,6 +106,14 @@ def build_LSTM_model(vocab_length, max_len_tweet):
 
 
 def fit_LSTM_MODEL(LSTM_MODEL, X_train, y_train_encoded, X_test, y_test_encoded):
+    """! Method to fit and train the LSTM network.
+    @param LSTM_MODEL LSTM model object.
+    @param X_train Training Dataframe.
+    @param y_train_encoded Training targets where the targets are encoded to numbers.
+    @param X_test Testing Dataframe.
+    @param y_test_encoded Testing targets where the targets are encoded to numbers.
+    @return LSTM model history.
+    """
     es = EarlyStopping(patience=10, monitor='val_accuracy', restore_best_weights=True)
     history = LSTM_MODEL.fit(X_train,
                              y_train_encoded,
@@ -103,6 +127,13 @@ def fit_LSTM_MODEL(LSTM_MODEL, X_train, y_train_encoded, X_test, y_test_encoded)
 
 
 def final_report(LSTM_MODEL, X_test, y_test_mapped, y_test):
+    """! Method to generate classfication report.
+     @param LSTM_MODEL LSTM model object.
+     @param X_test Testing Dataframe.
+     @param y_test_mapped Testing targets where the targets are encoded to numbers.
+     @param y_test Testing targets.
+     @return classification report dictionary, testing targets which are ground truth, predicted targets of the model.
+     """
     predicted = LSTM_MODEL.predict(X_test)
     y_pred = predicted.argmax(axis=-1)
     acc_score = accuracy_score(y_test_mapped, y_pred)
@@ -118,6 +149,13 @@ def final_report(LSTM_MODEL, X_test, y_test_mapped, y_test):
 
 
 def plot_cm_ROC(y_test_mapped, y_pred, y_test, y_train, predicted):
+    """! Method to plot ROC curve and Precision-recall curve.
+     @param y_test_mapped Mapped testing targets.
+     @param y_pred Testing targets predicted by the model.
+     @param y_test ground truth testing targets.
+     @param y_train Training targets.
+     @param predicted list of targets predicted by the model.
+     """
     cm = confusion_matrix(y_test_mapped, y_pred)
     disp = ConfusionMatrixDisplay(confusion_matrix=cm, display_labels=np.unique(y_test))
     disp.plot()

@@ -7,8 +7,7 @@ import time
 import os
 import sys
 
-"""
-In order to use this script you should register a data-mining application
+"""!In order to use this script you should register a data-mining application
 with Twitter.  Good instructions for doing so can be found here:
 http://marcobonzanini.com/2015/03/02/mining-twitter-data-with-python-part-1/
 
