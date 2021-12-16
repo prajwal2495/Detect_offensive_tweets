@@ -1,10 +1,6 @@
 var searchData=
 [
-  ['load_5fapi_0',['load_api',['../namespacetwitter__search.html#ac32e04640e8ba7e4b3390f55e48fb5b0',1,'twitter_search']]],
-  ['lstm_5flevel_5fa_1',['LSTM_level_A',['../namespace_l_s_t_m__level___a.html',1,'']]],
-  ['lstm_5flevel_5fa_2epy_2',['LSTM_level_A.py',['../_l_s_t_m__level___a_8py.html',1,'']]],
-  ['lstm_5flevel_5fb_3',['LSTM_level_B',['../namespace_l_s_t_m__level___b.html',1,'']]],
-  ['lstm_5flevel_5fb_2epy_4',['LSTM_level_B.py',['../_l_s_t_m__level___b_8py.html',1,'']]],
-  ['lstm_5flevel_5fc_5',['LSTM_level_C',['../namespace_l_s_t_m__level___c.html',1,'']]],
-  ['lstm_5flevel_5fc_2epy_6',['LSTM_level_C.py',['../_l_s_t_m__level___c_8py.html',1,'']]]
+  ['get_5fmaxlen_5ftweet_0',['get_maxlen_tweet',['../namespace_l_s_t_m__level___a.html#aaa85510a4ef906215aea3bf29c5a4eaa',1,'LSTM_level_A.get_maxlen_tweet()'],['../namespace_l_s_t_m__level___b.html#a28abdcfdd4e01a7c83d3dbf5f51a9757',1,'LSTM_level_B.get_maxlen_tweet()'],['../namespace_l_s_t_m__level___c.html#a101fbb409c3950a92077b1b5f2760883',1,'LSTM_level_C.get_maxlen_tweet()']]],
+  ['get_5ftweet_5fid_1',['get_tweet_id',['../namespacetwitter__search.html#a8d0a9f730991b8bac7adf3fd194f3dd6',1,'twitter_search']]],
+  ['get_5fvectors_2',['get_vectors',['../namespace_annotate___model___data.html#a83542cf8d286999d9749f8eea0edc4e5',1,'Annotate_Model_Data']]]
 ];

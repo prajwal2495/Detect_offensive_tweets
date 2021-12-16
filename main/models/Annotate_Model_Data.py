@@ -104,17 +104,17 @@ print(stopwords)
 
 
 def clean(row):
-    row = str(row)
-#     removal_list = ['URL','\'ve','n\'t','\'s','\'m','!']
-#     for element in removal_list:
-#         row = row.replace(element,'')
-    
-    row = row.replace('http\S+|www.\S+', '')
-    row = re.sub("@[A-Za-z0-9]+","@USER",row)
-    row = re.sub("[A-Za-z0-9]+","",row)
-    row = re.sub("@","@USER",row)
-    row = re.sub('[+,-,_,=,/,<,>,!,#,$,%,^,&,*,\",:,;,.,' ',\t,\r,\n,\',|]','',row)
-    return row
+	"""! Method to pre-process all the tweets
+	@param row Each tweet from the dataset
+	@return pre-processed tweets
+	"""
+	row = str(row)
+	row = row.replace('http\S+|www.\S+', '')
+	row = re.sub("@[A-Za-z0-9]+","@USER",row)
+	row = re.sub("[A-Za-z0-9]+","",row)
+	row = re.sub("@","@USER",row)
+	row = re.sub('[+,-,_,=,/,<,>,!,#,$,%,^,&,*,\",:,;,.,' ',\t,\r,\n,\',|]','',row)
+	return row
 
 
 # In[27]:
@@ -146,7 +146,11 @@ analyzer=unsupervised_morph.UnsupervisedMorphAnalyzer('mr')
 
 
 def tokenize(tweet):
-    return indic_tokenize.trivial_tokenize(tweet)
+	"""! Method to tokenize the tweets
+	@param tweet Each tweet from the dataset
+	@return Indic NLP tokenized tweets
+	"""
+	return indic_tokenize.trivial_tokenize(tweet)
 
 def morph(tweet):
     analyzed_tokens=analyzer.morph_analyze_document(str(tweet).split(' '))
@@ -183,6 +187,10 @@ vector = collective_tweets["tokens"].tolist()
 
 
 def tfid_vectorizer(vector):
+	"""! Method to TF-IDF vectorize the tweets
+	@param vector vector list of eact tweet
+	@return vector matrix
+	"""
 	## Creates and stores an instance of the TfidfVectorizer class. This will be used further to extract our data as tf-idf features.
 	vectorizer = TfidfVectorizer()
 	untokenized_data =[' '.join(tweet) for tweet in tqdm(vector, "Vectorizing...")]

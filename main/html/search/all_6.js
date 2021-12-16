@@ -1,4 +1,7 @@
 var searchData=
 [
-  ['main_0',['main',['../namespaceclassical__models.html#a30086323916947a936c2281c95ced498',1,'classical_models.main()'],['../namespace_l_s_t_m__level___a.html#a98279e688ffa15504e019861a0033616',1,'LSTM_level_A.main()'],['../namespace_l_s_t_m__level___b.html#a214ebb8f7dabf24009e96f0447de0227',1,'LSTM_level_B.main()'],['../namespace_l_s_t_m__level___c.html#afed64ffffd0aa53eb4b76e41ca2437d1',1,'LSTM_level_C.main()'],['../namespacepre__processing.html#a4565425a8870c820457e4e1e615dcdda',1,'pre_processing.main()'],['../namespacetwitter__search.html#a0f632cae06437b954a7142143ab57036',1,'twitter_search.main()']]]
+  ['i_0',['i',['../namespace_annotate___model___data.html#acb559820d9ca11295b4500f179ef6392',1,'Annotate_Model_Data']]],
+  ['indic_5fnlp_5flib_5fhome_1',['INDIC_NLP_LIB_HOME',['../namespace_annotate___model___data.html#a560acf0e78b211ced1b1f484d26356c0',1,'Annotate_Model_Data']]],
+  ['indic_5fnlp_5fresources_2',['INDIC_NLP_RESOURCES',['../namespace_annotate___model___data.html#ad56cb40bf80c5bb768567648a554b595',1,'Annotate_Model_Data']]],
+  ['iterator_5fmap_3',['iterator_map',['../namespace_annotate___model___data.html#a67d0407beafab91de812436884cdb9c0',1,'Annotate_Model_Data']]]
 ];

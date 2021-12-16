@@ -1,7 +1,5 @@
 var searchData=
 [
-  ['plot_5fcm_0',['plot_cm',['../namespaceclassical__models.html#a1fb4baa04802ccec7bf9c7cab75e2623',1,'classical_models']]],
-  ['plot_5fcm_5froc_1',['plot_cm_ROC',['../namespace_l_s_t_m__level___a.html#a7b990b4232383d21741429b95f4c9ebe',1,'LSTM_level_A.plot_cm_ROC()'],['../namespace_l_s_t_m__level___b.html#adb31b82e2c1de764ed471ec3d3b0c0f8',1,'LSTM_level_B.plot_cm_ROC()'],['../namespace_l_s_t_m__level___c.html#a2df234314e5390267f38b731949e8da3',1,'LSTM_level_C.plot_cm_ROC()']]],
-  ['pre_5fprocessing_2',['pre_processing',['../namespacepre__processing.html',1,'']]],
-  ['pre_5fprocessing_2epy_3',['pre_processing.py',['../pre__processing_8py.html',1,'']]]
+  ['main_0',['main',['../namespaceclassical__models.html#a30086323916947a936c2281c95ced498',1,'classical_models.main()'],['../namespace_l_s_t_m__level___a.html#a98279e688ffa15504e019861a0033616',1,'LSTM_level_A.main()'],['../namespace_l_s_t_m__level___b.html#a214ebb8f7dabf24009e96f0447de0227',1,'LSTM_level_B.main()'],['../namespace_l_s_t_m__level___c.html#afed64ffffd0aa53eb4b76e41ca2437d1',1,'LSTM_level_C.main()'],['../namespacepre__processing.html#a4565425a8870c820457e4e1e615dcdda',1,'pre_processing.main()'],['../namespacetwitter__search.html#a0f632cae06437b954a7142143ab57036',1,'twitter_search.main()']]],
+  ['morph_1',['morph',['../namespace_annotate___model___data.html#a924fed75956a89509096880113d961ec',1,'Annotate_Model_Data']]]
 ];

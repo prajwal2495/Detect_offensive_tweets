@@ -1,4 +1,19 @@
 var searchData=
 [
-  ['offensive_20language_20identification_20for_20indo_2daryan_20languages_0',['Offensive Language Identification for Indo-Aryan Languages',['../index.html',1,'']]]
+  ['label_5fname_0',['label_name',['../namespace_annotate___model___data.html#a4d38e8bd7ef23f4704c8eb9cf209aff2',1,'Annotate_Model_Data']]],
+  ['labels_5flevel_5fa_1',['labels_level_a',['../namespace_annotate___model___data.html#aeb96c8e71e08986bc0b6a5a8b8bde19d',1,'Annotate_Model_Data']]],
+  ['labels_5flevel_5fb_2',['labels_level_b',['../namespace_annotate___model___data.html#a2493c27cd82b1df9109d30a08ae8c92a',1,'Annotate_Model_Data']]],
+  ['labels_5flevel_5fc_3',['labels_level_c',['../namespace_annotate___model___data.html#add7286eb49cf08c55cfa54de686016b7',1,'Annotate_Model_Data']]],
+  ['level_5fa_4',['level_A',['../namespace_annotate___model___data.html#aeb2da75f6e49b05e2768688c5b470746',1,'Annotate_Model_Data']]],
+  ['level_5fb_5',['level_B',['../namespace_annotate___model___data.html#a72574880d87e7d95b6d5a01da9b131bc',1,'Annotate_Model_Data']]],
+  ['level_5fb_5findices_6',['level_B_indices',['../namespace_annotate___model___data.html#a09e892aae2a82c4d892b06e0ef2556b4',1,'Annotate_Model_Data']]],
+  ['level_5fc_7',['level_C',['../namespace_annotate___model___data.html#ab683ec767fdfb3c3158256fd8f38c3e9',1,'Annotate_Model_Data']]],
+  ['level_5fc_5findices_8',['level_C_indices',['../namespace_annotate___model___data.html#a93f6a57afc0c380c0d3b2dbec452c640',1,'Annotate_Model_Data']]],
+  ['load_5fapi_9',['load_api',['../namespacetwitter__search.html#ac32e04640e8ba7e4b3390f55e48fb5b0',1,'twitter_search']]],
+  ['lstm_5flevel_5fa_10',['LSTM_level_A',['../namespace_l_s_t_m__level___a.html',1,'']]],
+  ['lstm_5flevel_5fa_2epy_11',['LSTM_level_A.py',['../_l_s_t_m__level___a_8py.html',1,'']]],
+  ['lstm_5flevel_5fb_12',['LSTM_level_B',['../namespace_l_s_t_m__level___b.html',1,'']]],
+  ['lstm_5flevel_5fb_2epy_13',['LSTM_level_B.py',['../_l_s_t_m__level___b_8py.html',1,'']]],
+  ['lstm_5flevel_5fc_14',['LSTM_level_C',['../namespace_l_s_t_m__level___c.html',1,'']]],
+  ['lstm_5flevel_5fc_2epy_15',['LSTM_level_C.py',['../_l_s_t_m__level___c_8py.html',1,'']]]
 ];
