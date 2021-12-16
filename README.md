@@ -1,4 +1,4 @@
-# Offensive Language Identification for Indo-Aryan Languages
+# Predicting the Type and Target of Offensive Posts for Indo-Aryan Languages
 ### Contributors: Prajwal Krishna, Mayuresh Nene, Shrunali Paygude, Mrinal Chaudhari
 
 ## Overview of the project
